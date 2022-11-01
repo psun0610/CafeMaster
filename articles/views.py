@@ -14,29 +14,29 @@ def index(request):
 
 def create_cafe(request):
     if request.method == "POST":
-        articleform = CafeForm(request.POST, request.FILES)
-        if articleform.is_valid():
-            article = articleform.save(commit=False)
-            article.save()
-        
+        cafeform = CafeForm(request.POST, request.FILES)
+        if cafeform.is_valid():
+            cafe =cafeform.save(commit=False)
+            cafe.save()
             return redirect("articles:index")
     else:
-        articleform = CafeForm()
-    context = {"article_form": articleform}
+        cafeform = CafeForm()
+    context = {"article_form":cafeform}
     return render(request, "articles/create_cafe.html", context)
 
-def create_comment(request):
+def create_comment(request, pk):
+    cafe = Cafe.objects.get(pk=pk)
     if request.method == "POST":
         commentForm = CommentForm(request.POST, request.FILES)
         if commentForm.is_valid():
             comment = commentForm.save(commit=False)
-            
+            comment.cafe = cafe
+            comment.user = request.user
             comment.save()
-
             return redirect("articles:index")
     else:
         commentForm = CommentForm()
-    context = {"article_form": commentForm}
+    context = {"commentform": commentForm}
     return render(request, "articles/create_comment.html", context)
 
 

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block body %}
+
+<div class="container" style="padding: 40px 30px;">
+    <h1> 글쓰기 </h1>
+
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form article_form %}
+        <button type="submit" class="btn btn-success">제출</button>
+
+        </button>
+    </form>
+</div>
+{% endblock %}

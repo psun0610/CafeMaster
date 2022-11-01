@@ -9,12 +9,15 @@ django-bootstrap5==22.1
 django-extensions==3.2.1
 django-imagekit==4.1.0
 django-multiselectfield==0.1.12
+django-phonenumber-field==7.0.0
 django-widget-tweaks==1.4.12
 executing==1.1.1
 ipython==8.5.0
 jedi==0.18.1
 matplotlib-inline==0.1.6
 parso==0.8.3
+phonenumbers==8.12.57
+phonenumberslite==8.12.57
 pickleshare==0.7.5
 pilkit==2.0
 Pillow==9.2.0

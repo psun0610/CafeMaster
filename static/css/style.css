@@ -19,9 +19,14 @@
   font-family: 'LeferiPoint-WhiteObliqueA';
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
-.noto-sans {
-  font-family: 'Noto Sans KR', sans-serif;
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400 500 600;
+  font-style: normal;
+}
+.title-font {
+  font-family: 'Pretendard-Regular';
 }
 
 /* PC (해상도 1468px)*/ 
@@ -68,7 +73,7 @@
 
   /* index.html */
   .index-logo {
-    padding: 50px 0 30px;
+    padding: 60px 0 30px;
     color: black;
     text-align: center;
     font-size: 45px;
@@ -94,7 +99,7 @@
   }
 
   .index-tags-div {
-    margin: 38px 0;
+    margin: 70px 0 38px;
     text-align: center;
   }
   .tag-input {
@@ -154,7 +159,7 @@
     justify-content: space-between;
   }
   .index-title>h2 {
-    font-size: 22px;
+    font-size: 23px;
     font-weight: bold;
   }
   .index-title>a {
@@ -169,11 +174,42 @@
   .index-content {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
-  .index-content>img {
+  .index-content a {
+    color:#000000;
+    text-decoration: none;
+  }
+  .index-content img {
     width: 310px;
     height: 250px;
     object-fit: cover;
+  }
+  .index-content-cafe-info {
+    margin-bottom: 30px;
+  }
+  .index-content-cafe-info h2 {
+    font-size: 20px;
+    margin-bottom: 0;
+    padding-top: 3px;
+    font-weight: 500;
+  }
+  .index-message>svg {
+    width: 14px;
+    margin: 0 5px 0 10px;
+    color:#767676;
+  }
+  .index-message>span {
+    color:#767676;
+    font-size: 14px;
+  }
+  .index-content-cafe-info>h3 {
+    font-size: 16px;
+    margin: 0;
+  }
+  .index-heart {
+    color: #DE1A1A;
+    width: 16px;
   }
 
   /* accounts */
@@ -187,7 +223,164 @@
 
 /* 컨테이너 사이즈 */
 @media all and (min-width:1024px) and (max-width:1467px) {
+  /* base.html */
+  .my-container {
+    max-width: 100.0000vw;
+    margin: 0 auto;
+    background-color: #f8f6f39d;
+  }
+  
+  .nav {
+    background-color: #CEB39F;
+    height: 3.4060vw;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    /* box-shadow: 0.0000vw 0.0000vw 1.3624vw #948173b0; */
+  }
+  .nav-logo {
+    font-weight: bold;
+    font-size: 1.5668vw !important;
+  }
+  .nav>div {
+    display: flex;
+    width: 100.0000vw;
+    margin: 0 auto;
+    justify-content: end;
+  }
+  .nav>div>ul {
+    padding: 0;
+    margin: 0;
+  }
+  .my-navitem { 
+    list-style: none;
+    padding: 0 1.5668vw;
+  }
+  .my-navitem>a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.0899vw;
+    line-height: 3.4060vw;
+  }
 
+  /* index.html */
+  .index-logo {
+    padding: 3.4060vw 0 2.0436vw;
+    color: black;
+    text-align: center;
+    font-size: 3.0654vw;
+  }
+  .search-form {
+    text-align: center;
+  }
+  .search-input {
+    border-radius: 3.4060vw;
+    width: 29.2916vw;
+    height: 2.5886vw;
+    background-color: transparent;
+    border: 0.2044vw solid #9E816C;
+    padding: 0 1.0899vw;
+  }
+  .search-btn {
+    padding: 0 1.3624vw;
+    height: 2.5886vw;
+    background-color: #9E816C;
+    color:#f8f6f3;
+    border: 0;
+    border-radius: 1.3624vw;
+  }
+
+  .index-tags-div {
+    margin: 2.5886vw 0;
+    text-align: center;
+  }
+  .tag-input {
+    display: none;
+  }
+  .tags {
+    display: inline-block;
+    padding: 0.4087vw 1.0218vw 0.1362vw;
+    margin: 0.5450vw 0.8856vw;
+    background-color: #D9D9D9;
+    border-radius: 1.3624vw;
+    font-size: 1.0218vw;
+  }
+  .tag-input:checked + label {
+    background-color: #CEB39F;
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .swiper-slide img {
+    width: 28.6104vw;
+    height: 17.0300vw;
+    object-fit: cover;
+  }
+  .index-arrow {
+    color: #000000;
+  }
+  .swiper-pagination-bullet-active {
+    background:#000000 !important;
+  }
+  .swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+    background-image: none !important;
+    width: 2.7248vw !important;
+    margin-left: 1.3624vw;
+  }
+  .swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+    background-image: none !important;
+    width: 2.7248vw !important;
+    margin-right: 1.3624vw;
+  }
+  .index-container {
+    width: 89.9183vw;
+    margin: 0 auto;
+  }
+  .index-article-container {
+    width: 89.9183vw;
+    margin: 4.0872vw auto;
+  }
+  .index-article-container>article {
+    padding: 1.3624vw 0;
+  }
+  .index-title {
+    display: flex;
+    justify-content: space-between;
+  }
+  .index-title>h2 {
+    font-size: 1.4986vw;
+    font-weight: bold;
+  }
+  .index-title>a {
+    color: #767676;
+    text-decoration: none;
+  }
+  .index-title>a>h3 {
+    font-size: 1.0899vw;
+    font-weight: bold;
+    margin: 0;
+  }
+  .index-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .index-content img {
+    width: 21.1172vw;
+    height: 17.0300vw;
+    object-fit: cover;
+  }
+
+  /* accounts */
+  .form-div {
+    padding: 6.8120vw 10.2180vw;
+  }
+  .login-form-div {
+    padding: 6.8120vw 37.4659vw;
+  }
 }
 
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/ 

@@ -16,7 +16,7 @@ good = (
 class Cafe(models.Model):
     name = models.CharField(max_length=20)
     hits = models.IntegerField(default=0)
-    adress = models.CharField(max_length=50)
+    address = models.CharField(max_length=50)
     telephone = models.TextField()
     opening = models.TextField()
     lastorder = models.TimeField()

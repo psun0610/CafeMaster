@@ -8,9 +8,15 @@ from .forms import CafeForm, CommentForm
 
 
 def index(request):
-    cafes = Cafe.objects.all()
-    comments = Comment.objects.all() 
+    cafetaste = Cafe.objects.order_by('-taste')[:9]
+    cafeinterior = Cafe.objects.order_by('-interior')[:9]
+    cafedessert = Cafe.objects.order_by('-dessert')[:9]
     
+    context = {
+        'cafetaste' : cafetaste,
+        'cafeinterior' : cafeinterior,
+        'cafedessert' : cafedessert,
+    }
     return render(request, "articles/index.html")
 
 

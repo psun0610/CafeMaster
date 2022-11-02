@@ -19,7 +19,7 @@
   font-family: 'LeferiPoint-WhiteObliqueA';
 }
 
-/* PC (해상도 1024px)*/ 
+/* PC (해상도 1468px)*/ 
 @media all and (min-width:1468px) {
   /* base.html */
   .my-container {
@@ -116,12 +116,37 @@
   }
 
   .index-article-container {
-    max-width: 1320px;
-    margin: 0 auto;
+    width: 1320px;
+    margin: 60px auto;
   }
-  .index-article {
+  .index-article-container>article {
+    padding: 20px 0;
+  }
+  .index-title {
     display: flex;
     justify-content: space-between;
+  }
+  .index-title>h2 {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  .index-title>a {
+    color: #767676;
+    text-decoration: none;
+  }
+  .index-title>a>h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+  }
+  .index-content {
+    display: flex;
+    justify-content: space-between;
+  }
+  .index-content>img {
+    width: 310px;
+    height: 250px;
+    object-fit: cover;
   }
 }
 

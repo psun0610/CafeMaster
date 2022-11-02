@@ -4,8 +4,17 @@
 
 {% block body %} 
 <!-- 로고 -->
-<div class="index-logo logo-font">
-  Cafe Master
+<div class="index-logo logo-font d-flex justify-content-center align-items-center">
+  <lord-icon
+    src="https://cdn.lordicon.com/kbchswih.json"
+    trigger="hover"
+    colors="outline:#121331,primary:#9e816c,secondary:#ebe6ef"
+    axis-y="45"
+    axis-x="55"
+    style="width:120px;height:120px">
+  </lord-icon>
+  
+  <p class="m-0 d-inline-block">Cafe Master</p>
 </div>
 
 <!-- 검색 기능 -->
@@ -28,61 +37,119 @@
   <label class="tags" for="tag3">
     #커피가맛있는
   </label>
+  <input type="radio" id="tag4" name="tagform" class="tag-input">
+  <label class="tags" for="tag4">
+    #힙한
+  </label>
+  <input type="radio" id="tag5" name="tagform" class="tag-input">
+  <label class="tags" for="tag5">
+    #데이트하기좋은
+  </label>
+  <input type="radio" id="tag6" name="tagform" class="tag-input">
+  <label class="tags" for="tag6">
+    #공부하기좋은
+  </label>
+  <input type="radio" id="tag7" name="tagform" class="tag-input">
+  <label class="tags" for="tag7">
+    #이색적인
+  </label>
+  <input type="radio" id="tag8" name="tagform" class="tag-input">
+  <label class="tags" for="tag8">
+    #뷰가좋은
+  </label>
 </form>
 
+<div class="index-container kor-font">
 <!-- 캐러셀 -->
-<div class="index-tag-img-div swiper-container">
-  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-caret-left-fill index-arrow" viewBox="0 0 16 16">
-    <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
-  </svg>
-  <div class="swiper-wrapper">
-    {% for swiper_list in swiper_lists %}
-      {% for swiper in swiper_list %}
-        <div class="swiper-slide"><img src="{{ swiper.url }}"></div>
+  <div class="index-tag-img-div swiper-container">
+    <div class="swiper-wrapper">
+      {% for swiper_list in swiper_lists %}
+        {% for swiper in swiper_list %}
+          <a href="{% url 'articles:detail' swiper.1.pk %}" class="swiper-slide"><img src="{{ swiper.0.url }}"></a>
+        {% endfor %}
       {% endfor %}
-    {% endfor %}
+    </div>
+    <!-- 페이징 -->
+    <div class="swiper-pagination"></div>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="swiper-button-prev bi bi-caret-left-fill index-arrow" viewBox="0 0 16 16">
+      <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="swiper-button-next bi bi-caret-right-fill index-arrow" viewBox="0 0 16 16">
+      <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+    </svg>
   </div>
-  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-caret-right-fill index-arrow" viewBox="0 0 16 16">
-    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-  </svg>
-
-  <!-- 페이징 -->
-  <div class="swiper-pagination"></div>
 </div>
 
-<div class="index-article-container kor-font">
+
+<div class="index-article-container title-font">
   <article>
     <div class="index-title">
       <h2>카페마스터가 추천하는</h2>
       <a href=""><h3>더보기</h3></a>
     </div>
     <div class="index-content">
-      <img src="https://placeimg.com/500/500/any">
-      <img src="https://placeimg.com/500/500/any">
-      <img src="https://placeimg.com/500/500/any">
-      <img src="https://placeimg.com/500/500/any">
+      {% for recommendcafe in recommend_lists %}
+        <div>
+          <a href="{% url 'articles:detail' recommendcafe.1.pk %}">
+            <img src="{{ recommendcafe.0.url }}">
+          </a>
+          <div class="index-content-cafe-info title-font">
+            <a href="{% url 'articles:detail' recommendcafe.1.pk %}">
+              <h2>
+                {{ recommendcafe.1.name }}<span class="index-message"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16">
+                  <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                  <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg><span>{{ recommendcafe.1.comment_set.all.count }}</span></span>
+              </h2>
+            </a>
+            <h3>
+              {{ recommendcafe.1.address }} | <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-suit-heart-fill index-heart" viewBox="0 0 16 16">
+                <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+              </svg> 99%
+            </h3>
+          </div>
+        </div>
+
+    {% endfor %}
     </div>
   </article>
+
   <article>
     <div class="index-title">
       <h2>나와 가까운</h2>
       <a href=""><h3>더보기</h3></a>
     </div>
     <div class="index-content">
-      <img src="https://placeimg.com/500/500/any">
-      <img src="https://placeimg.com/500/500/any">
-      <img src="https://placeimg.com/500/500/any">
-      <img src="https://placeimg.com/500/500/any">
+      {% for closecafe in closecafe_lists %}
+        <a href="{% url 'articles:detail' closecafe.1.pk %}">
+          <img src="{{ closecafe.0.url }}">
+        </a>
+      {% endfor %}
+    </div>
+  </article>
+
+  <article>
+    <div class="index-title">
+      <h2>후기가 많은</h2>
+      <a href=""><h3>더보기</h3></a>
+    </div>
+    <div class="index-content">
+      {% for commentcafe in commentcafe_lists %}
+        <a href="{% url 'articles:detail' commentcafe.1.pk %}">
+          <img src="{{ commentcafe.0.url }}">
+        </a>
+      {% endfor %}
     </div>
   </article>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+<script src="https://cdn.lordicon.com/qjzruarw.js"></script>
 <script>
 new Swiper('.swiper-container', {
 
 slidesPerView : 3, // 동시에 보여줄 슬라이드 갯수
-spaceBetween : 30, // 슬라이드간 간격
+spaceBetween : 0, // 슬라이드간 간격
 slidesPerGroup : 3, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
 
 // 그룹수가 맞지 않을 경우 빈칸으로 메우기

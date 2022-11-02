@@ -11,3 +11,6 @@ class User(AbstractUser):
                                 processors=[ResizeToFill(360, 360)],
                                 format='JPEG',
                                 options={'quality': 80})
+    taste = models.IntegerField(default=0)
+    interior = models.IntegerField(default=0)
+    dessert = models.IntegerField(default=0)

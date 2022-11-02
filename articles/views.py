@@ -65,4 +65,5 @@ def create_comment(request, pk):
     context = {"commentform": commentForm}
     return render(request, "articles/create_comment.html", context)
 
-
+def search(request):
+    pass

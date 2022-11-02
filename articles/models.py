@@ -24,6 +24,7 @@ class Cafe(models.Model):
     taste = models.IntegerField(default=0)
     interior = models.IntegerField(default=0)
     dessert = models.IntegerField(default=0)
+    score = models.IntegerField(default=0)
 
 class Comment(models.Model):
     content = models.TextField()

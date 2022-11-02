@@ -99,12 +99,12 @@
     background-color: #CEB39F;
   }
 
-  .index-tag-img-div {
+  .swiper-slide {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .index-tag-img-div>img {
+  .swiper-slide img {
     width: 420px;
     height: 250px;
     object-fit: cover;

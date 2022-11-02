@@ -7,15 +7,15 @@
             <tr class="thead-dark">
                 <th>pk</th>
                 <th>username</th>
-                <th>email</th>
+                <th>area</th>
             </tr>
         </thead>
         <tbody>
             {% for account in accounts %}
-            <tr>
+            <tr onClick='location.href="detail/{{account.pk}}/"' style='cursor: pointer;'>
                 <td>{{ account.pk }}</td>
                 <td>{{ account.username }}</a></td>
-                <td>{{ account.email }}</td>
+                <td>{{ account.area }}</td>
             </tr>
             {% endfor %}
         </tbody>

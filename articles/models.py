@@ -1,13 +1,25 @@
 from distutils.text_file import TextFile
+from random import choices
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
+from multiselectfield import MultiSelectField
 from django.db import models
 from django.conf import settings
 
-class Tags(models.Model):
-    taste = models.IntegerField(default=0)
-    interior = models.IntegerField(default=0)
-    dessert = models.IntegerField(default=0)
+good = (
+    (1,'커피맛'),
+    (2,'인테리어'),
+    (3,'디저트'),
+)
+
+
+class Cafe(models.Model):
+    name = models.CharField(max_length=20)
+    hits = models.IntegerField(default=0)
+    adress = models.CharField(max_length=50)
+    telephone = models.TextField()
+    opening = models.TextField()
+    lastorder = models.TimeField()
 
 class Comment(models.Model):
     content = models.TextField()
@@ -17,14 +29,7 @@ class Comment(models.Model):
                                 processors=[ResizeToFill(1200, 960)],
                                 format='JPEG',
                                 options={'quality': 80})
-    tag = models.ForeignKey(Tags, on_delete=models.CASCADE)
+    cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE)
+    tag = MultiSelectField(choices=good, max_choices=6)
 
-class Cafe(models.Model):
-    name = models.CharField(max_length=20)
-    hits = models.IntegerField(default=0)
-    adress = models.CharField(max_length=50)
-    telephone = models.TextField()
-    opening = models.TextField()
-    lastorder = models.TimeField()
-    tag = models.ForeignKey(Tags, on_delete=models.CASCADE)
 

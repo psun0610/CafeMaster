@@ -1,14 +1,16 @@
 from django import forms
-from .models import Article, Comment
+from .models import Comment, Cafe
 
-class ArticleForm(forms.ModelForm):
+
+
+class CafeForm(forms.ModelForm):
 
     class Meta:
-        model = Article
-        fields = ['title', 'content', 'image']
+        model = Cafe
+        fields = ['name', 'adress', 'telephone', 'opening', 'lastorder',]
 
 class CommentForm(forms.ModelForm):
 
     class Meta:
-        model = Comment 
-        fields = ['content',]
+        model = Comment
+        fields = ['content', 'picture', 'tag',]

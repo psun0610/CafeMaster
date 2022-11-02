@@ -8,6 +8,9 @@ from .forms import CafeForm, CommentForm
 
 
 def index(request):
+    cafes = Cafe.objects.all()
+    comments = Comment.objects.all() 
+    
     return render(request, "articles/index.html")
 
 
@@ -32,6 +35,14 @@ def create_comment(request, pk):
             comment = commentForm.save(commit=False)
             comment.cafe = cafe
             comment.user = request.user
+            if '1' in comment.tag:
+                cafe.taste = cafe.taste + 1
+                print(cafe.taste)
+            if '2' in comment.tag:
+                cafe.interior = cafe.interior + 1
+            if '3' in comment.tag:
+                cafe.dessert = cafe.dessert + 1
+            cafe.save()
             comment.save()
             return redirect("articles:index")
     else:

@@ -20,6 +20,10 @@ class Cafe(models.Model):
     telephone = models.TextField()
     opening = models.TextField()
     lastorder = models.TimeField()
+    #해시태그
+    taste = models.IntegerField(default=0)
+    interior = models.IntegerField(default=0)
+    dessert = models.IntegerField(default=0)
 
 class Comment(models.Model):
     content = models.TextField()

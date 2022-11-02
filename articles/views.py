@@ -23,15 +23,24 @@ def index(request):
                     list_.append((comment.picture, cafe))
                     break
         swiper_list.append(list_)
+
     # 사용자 추천 카페 정보
-    user_tag = [('taste',request.user.taste),
-                ('interior',request.user.interior),
-                ('dessert',request.user.dessert)]
-    reco = []
-    for name,tag in user_tag:
-        reco.append([name,tag])
-    reco.sort(reverse=True)
     recommend = []
+    adr = request.user.area
+    cafeadress = Cafe.objects.filter(adress=adr)
+    cafeadr = cafeadress.order_by('-score')[:2]
+    list_ = []
+    for cafe in cafeadr:
+        for comment in cafe.comment_set.all():
+            if comment.picture != '':
+                list_.append((comment.picture, cafe))
+                break
+        recommend.append(list_)
+
+    user_tag = [('taste', request.user.taste),
+                ('interior', request.user.interior),
+                ('dessert', request.user.dessert)]
+    reco = sorted(user_tag, reverse=True, key=lambda x:x[1])
     for i in range(len(user_tag)):
         fir = Cafe.objects.order_by('-' + reco[i][0])[:2]
         list_ = []
@@ -41,22 +50,37 @@ def index(request):
                     list_.append((comment.picture, cafe))
                     break
         recommend.append(list_)
-        adr = request.user.adress
-        cafeadress = Cafe.objects.filter(adress=adr)
-        cafeadr = cafeadress.order_by('-score')[:2]
-        list_ = []
-        for cafe in cafeadr:
-            for comment in cafe.comment_set.all():
-                if comment.picture != '':
-                    list_.append((comment.picture, cafe))
-                    break
-        recommend.append(list_)
-    print(recommend)
+
     
+    # 가까운 카페
+    closecafe = []
+    adr = request.user.area
+    cafeadress = Cafe.objects.filter(adress=adr)
+    cafeadr = cafeadress.order_by('-score')[2:6]
+    list_ = []
+    for cafe in cafeadr:
+        for comment in cafe.comment_set.all():
+            if comment.picture != '':
+                list_.append((comment.picture, cafe))
+                break
+        closecafe.append(list_)
+    
+    # 후기가 많은 카페
+    commentcafe = []
+    cafes = Cafe.objects.order_by('-comment_count')[:4]
+    for cafe in cafes:
+        list_ = []
+        for comment in cafe.comment_set.all():
+            if comment.picture != '':
+                list_.append((comment.picture, cafe))
+                break
+        commentcafe.append(list_)
 
     context = {
         'swiper_lists': swiper_list,
         'recommend_lists' : recommend,
+        'closecafe_lists' : closecafe,
+        'commentcafe_lists' : commentcafe,
     }
     return render(request, "articles/index.html", context)
 

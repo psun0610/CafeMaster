@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;1,200&display=swap');
+.eng-font {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+}
+.logo-font {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'LeferiPoint-WhiteObliqueA';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-WhiteObliqueA.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+.kor-font {
+  font-family: 'LeferiPoint-WhiteObliqueA';
+}
+
+/* PC (해상도 1024px)*/ 
+@media all and (min-width:1468px) {
+  /* base.html */
+  .my-container {
+    max-width: 1468px;
+    margin: 0 auto;
+    background-color: #f8f6f39d;
+  }
+  
+  .nav {
+    background-color: #CEB39F;
+    height: 50px;
+  }
+  .nav>div {
+    display: flex;
+    width: 1468px;
+    margin: 0 auto;
+    justify-content: end;
+  }
+  .nav>div>ul {
+    padding: 0;
+    margin: 0;
+  }
+  .my-navitem { 
+    list-style: none;
+    padding: 0 23px;
+  }
+  .my-navitem>a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    line-height: 50px;
+  }
+
+  /* index.html */
+  .index-logo {
+    padding: 50px 0 30px;
+    color: black;
+    text-align: center;
+    font-size: 45px;
+  }
+  .search-form {
+    text-align: center;
+  }
+  .search-input {
+    border-radius: 50px;
+    width: 430px;
+    height: 38px;
+    background-color: transparent;
+    border: 3px solid #9E816C;
+    padding: 0 16px;
+  }
+  .search-btn {
+    padding: 0 20px;
+    height: 38px;
+    background-color: #9E816C;
+    color:#f8f6f3;
+    border: 0;
+    border-radius: 20px;
+  }
+
+  .index-tags-div {
+    margin: 38px 0;
+    text-align: center;
+  }
+  .tag-input {
+    display: none;
+  }
+  .tags {
+    display: inline-block;
+    padding: 6px 15px 2px;
+    margin: 8px 13px;
+    background-color: #D9D9D9;
+    border-radius: 20px;
+    font-size: 15px;
+  }
+  .tag-input:checked + label {
+    background-color: #CEB39F;
+  }
+
+  .index-tag-img-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .index-tag-img-div>img {
+    width: 420px;
+    height: 250px;
+    object-fit: cover;
+    margin: 0 15px;
+  }
+  .index-arrow {
+    color:#9E816C;
+    width: 28px;
+  }
+
+  .index-article-container {
+    max-width: 1320px;
+    margin: 0 auto;
+  }
+  .index-article {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+/* 컨테이너 사이즈 */
+@media all and (min-width:1024px) and (max-width:1467px) {
+
+}
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/ 
+@media all and (min-width:768px) and (max-width:1023px) {
+  
+} 
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/ 
+@media all and (max-width:767px) {
+  
+}

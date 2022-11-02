@@ -8,16 +8,25 @@ from .forms import CafeForm, CommentForm
 
 
 def index(request):
-    cafetaste = Cafe.objects.order_by('-taste')[:9]
-    cafeinterior = Cafe.objects.order_by('-interior')[:9]
-    cafedessert = Cafe.objects.order_by('-dessert')[:9]
-    
+    goods = (
+    (1,'taste'),
+    (2,'interior'),
+    (3,'dessert'),
+    )
+    swiper_list = []
+    for num, good in goods:
+        list_ = []
+        for cafe in Cafe.objects.order_by('-' + good)[:9]:
+            for comment in cafe.comment_set.all():
+                if comment.picture != '':
+                    list_.append(comment.picture)
+                    break
+        swiper_list.append(list_)
+
     context = {
-        'cafetaste' : cafetaste,
-        'cafeinterior' : cafeinterior,
-        'cafedessert' : cafedessert,
+        'swiper_lists': swiper_list,
     }
-    return render(request, "articles/index.html")
+    return render(request, "articles/index.html", context)
 
 
 

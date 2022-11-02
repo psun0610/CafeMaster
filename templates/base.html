@@ -14,10 +14,22 @@
 
 </head>
 <body>
-  <div class="container">
+  <nav class="nav eng-font">
+    <div>
+      <ul class="d-flex justify-content-end">
+        <li class="my-navitem">
+          <a href="">SignUp</a>
+        </li>
+        <li class="my-navitem">
+          <a href="">Login</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="my-container">
     {% block body %}{% endblock body %}
+    {% bootstrap_javascript %}
   </div>
-  {% bootstrap_javascript %}
 </body>
 
 </html>

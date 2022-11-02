@@ -2,8 +2,45 @@
 {% load static %}
 {% load django_bootstrap5 %}
 
-
 {% block body %} 
+<!-- 로고 -->
+<div class="index-logo logo-font">
+  Cafe Master
+</div>
 
-hhhhhhh
+<!-- 검색 기능 -->
+<form action="" class="search-form">
+  <input type="text" class="search-input">
+  <input type="button" class="search-btn" value="검색">
+</form>
+
+<!-- 해시태그 -->
+<form class="index-tags-div kor-font fw-bold">
+  <input type="radio" id="tag1" name="tagform" class="tag-input" checked>
+  <label class="tags" for="tag1">
+    #감성충만한
+  </label>
+  <input type="radio" id="tag2" name="tagform" class="tag-input">
+  <label class="tags" for="tag2">
+    #디저트가맛있는
+  </label>
+  <input type="radio" id="tag3" name="tagform" class="tag-input">
+  <label class="tags" for="tag3">
+    #커피가맛있는
+  </label>
+</form>
+
+<!-- 캐러셀 -->
+<div class="index-tag-img-div">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-caret-left-fill index-arrow" viewBox="0 0 16 16">
+    <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+  </svg>
+  <img src="https://placeimg.com/500/500/any">
+  <img src="https://placeimg.com/500/500/any">
+  <img src="https://placeimg.com/500/500/any">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-caret-right-fill index-arrow" viewBox="0 0 16 16">
+    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+  </svg>
+</div>
+
 {% endblock %}

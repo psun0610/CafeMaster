@@ -18,9 +18,9 @@
 </div>
 
 <!-- 검색 기능 -->
-<form action="" class="search-form">
-  <input type="text" class="search-input">
-  <input type="button" class="search-btn title-font" value="검색">
+<form action="{% url 'articles:search' %}" class="search-form" method="get">
+  <input type="search" class="search-input" placeholder="검색" name="searchs">
+  <input type="submit" class="search-btn" value="검색">
 </form>
 
 <!-- 해시태그 -->

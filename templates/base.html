@@ -15,14 +15,25 @@
 </head>
 <body>
   <nav class="nav eng-font">
-    <div>
-      <ul class="d-flex justify-content-end">
+    <div class="d-flex justify-content-between">
+      <ul>
         <li class="my-navitem">
-          <a href="">SignUp</a>
+          <a href="{% url 'articles:index' %}" class="logo-font nav-logo">Cafe Master</a>
+        </li>
+      </ul>
+      <ul class="d-flex">
+        {% if request.user.is_authenticated %}
+        <li class="my-navitem">
+          <a href="{% url 'accounts:logout' %}">LogOut</a>
+        </li>
+        {% else %}
+        <li class="my-navitem">
+          <a href="{% url 'accounts:signup' %}">SignUp</a>
         </li>
         <li class="my-navitem">
-          <a href="">Login</a>
+          <a href="{% url 'accounts:login' %}">LogIn</a>
         </li>
+        {% endif %}
       </ul>
     </div>
   </nav>

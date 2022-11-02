@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% block body %}
-<h2>로그인</h2>
-<form action="" method="POST">
+<div class="login-form-div noto-sans">
+  <h2 class="eng-font">Login</h2>
+  <form action="" method="POST">
     {% csrf_token %}
     {% bootstrap_form form %}
     {% bootstrap_button button_type="submit" content="로그인" %}
-</form>
+  </form>
+</div>
 {% endblock body %}

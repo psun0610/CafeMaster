@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from .models import Comment, Cafe
 from .forms import CafeForm, CommentForm
-
 # Create your views here.
 
 
@@ -117,5 +116,3 @@ def create_comment(request, pk):
     context = {"commentform": commentForm}
     return render(request, "articles/create_comment.html", context)
 
-def search(request):
-    pass

@@ -38,7 +38,48 @@
         </tbody>
     </table>
     {% if request.user == user %}
+    <a href="{% url 'accounts:update' %}" type="button" class="btn btn-primary">수정</a>
+    <a href="{% url 'accounts:change_password' %}" class='btn btn-warning'>비밀번호 변경</a>
     <a href="{% url 'accounts:delete' %}" type="button" class="btn btn-danger">삭제</a>
     {% endif %}
+    <br><br>
+    <h3>작성한 댓글</h3>
+    <p class="text-muted">{{ user.comment_set.count }}개를 작성하였습니다.</p>
+    <table class="table">
+        <thead>
+            <tr class="thead-dark">
+                <th>작성 댓글 개수</th>
+                <th>댓글 내용</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comment in user.comment_set.all %}
+            <tr>
+                <td>{{ forloop.counter}}</td>
+                <td><a href="{% url 'articles:detail' comment.article_id %}">{{comment.content}}</a></td>
+            </tr>
+            {% endfor%}
+        </tbody>
+    </table>
+    <br><br>
+    <h3>좋아요한 카페</h3>
+    <p class="text-muted">{{ user.comment_set.count }}개를 💛하였습니다.</p>
+    <table class="table">
+        <thead>
+            <tr class="thead-dark">
+                <th>번호</th>
+                <th>카페명</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comment in user.comment_set.all %}
+            <tr>
+                <td>{{ forloop.counter}}</td>
+                <td><a href="{% url 'articles:detail' article.pk %}">{{comment.content}}</a></td>
+            </tr>
+            {% endfor%}
+        </tbody>
+    </table>
+
     {% endblock %}
 </div>

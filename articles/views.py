@@ -193,3 +193,14 @@ def viewmore(request, pk):
         }
         return render(request, "articles/viewmore(co).html", context)
 
+def bookmark(request, pk):
+    cafe = Cafe.objects.get(pk=pk)
+    if request.user in cafe.bookmarks.all():
+        cafe.bookmarks.remove(request.user)
+        marked = False
+    else:
+        cafe.bookmarks.add(request.user)
+        marked = True
+    
+    context = {'marked': marked}
+    return JsonResponse(context)

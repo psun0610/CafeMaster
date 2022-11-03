@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from .models import Comment, Cafe
 from .forms import CafeForm, CommentForm
+from django.db.models import Q
 # Create your views here.
 
 
@@ -107,6 +108,19 @@ def create_comment(request, pk):
     context = {"commentform": commentForm}
     return render(request, "articles/create_comment.html", context)
 
+def search(request):
+    if 'searchs' in request.GET:
+        query = request.GET.get('searchs')
+        cafes = Cafe.objects.all().filter(
+            Q(name__icontains=query) |
+            Q(address__icontains=query)
+        )
+    context = {
+        'query': query,
+        'cafes': cafes,
+    }
+    return render(request, 'articles/search.html', context)
+
 from django.http import JsonResponse
 def like(request, pk):
     comment = Comment.objects.get(pk=pk)
@@ -161,4 +175,5 @@ def viewmore(request):
         'closecafe' : closecafe,
         'commentcafe' : commentcafe,
     }
+    return render(request, "articles/viewmore.html", context)
 

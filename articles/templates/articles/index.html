@@ -83,7 +83,7 @@
   <article>
     <div class="index-title">
       <h2>카페마스터가 추천하는</h2>
-      <a href=""><h3>더보기</h3></a>
+      <a href="{% url 'articles:viewmore' 1 %}"><h3>더보기</h3></a>
     </div>
     <div class="index-content">
       {% for recommendcafe in recommend_list %}
@@ -115,7 +115,7 @@
   <article>
     <div class="index-title">
       <h2>나와 가까운</h2>
-      <a href=""><h3>더보기</h3></a>
+      <a href="{% url 'articles:viewmore' 2 %}"><h3>더보기</h3></a>
     </div>
     <div class="index-content">
       {% for closecafe in closecafe_list %}
@@ -129,7 +129,7 @@
   <article>
     <div class="index-title">
       <h2>후기가 많은</h2>
-      <a href=""><h3>더보기</h3></a>
+      <a href="{% url 'articles:viewmore' 3 %}"><h3>더보기</h3></a>
     </div>
     <div class="index-content">
       {% for commentcafe in commentcafe_list %}

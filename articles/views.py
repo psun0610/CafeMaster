@@ -65,12 +65,33 @@ def index(request):
 # 카페 상세정보
 def detail(request, pk):
     cafe = Cafe.objects.get(pk=pk)
+    goods = (
+        (cafe.taste,'커피가맛있는'),
+        (cafe.interior,'인테리어가예쁜'),
+        (cafe.dessert,'디저트가맛있는'),
+        (cafe.emotion,'감성충만한'),
+        (cafe.hip,'힙한'),
+        (cafe.study,'집중하기좋은'),
+        (cafe.love,'데이트하기좋은'),
+        (cafe.sight,'뷰가좋은'),
+    )
     comment_form = CommentForm()
     cafe.score = cafe.taste + cafe.interior + cafe.dessert
     cafe.save()
+    tag = []
+    for good,name in goods:
+        li = []
+        li.append(good)
+        li.append(name)
+        tag.append(li)
+    tag = sorted(tag, reverse=True, key=lambda x:x[0])
+    hashtag = []
+    for i in range(3):
+        hashtag.append(tag[i][1])
     context = {
         'cafe': cafe,
         'comment' : cafe.comment_set.all(),
+        'hashtag' : hashtag,
         }
 
     return render(request, "articles/detail.html", context)

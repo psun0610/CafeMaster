@@ -10,7 +10,8 @@ urlpatterns = [
     path('<int:pk>/detail/', views.detail, name='detail'), #카페 디테일
     path('search/', views.search, name='search'),#검색 생성
     path('<int:pk>/like/', views.like, name='like'), #댓글공감
-    path('viewmore/', views.viewmore, name='viewmore'), #더보기
+    path('<int:pk>/viewmore/', views.viewmore, name='viewmore'), #더보기
+    path('<int:pk>/bookmark/', views.bookmark, name='bookmark'),
 ]
 
 

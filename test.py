@@ -32,33 +32,53 @@ def naverMapCrawling(search):
     for url in my_url_list:
         # url 하나씩 들어감
         driver.get(url)
-        driver.implicitly_wait(3)
+        # driver.implicitly_wait(3)
+        time.sleep(0.5)
 
         cnt += 1
         # 들어가서 뽑을 것: 사진, 주차, 영업시간, 특이사항
         name = driver.find_element(By.CSS_SELECTOR, '.Fc1rA').text
         address = driver.find_element(By.CSS_SELECTOR,'.IH7VW').text
-        tel = driver.find_element(By.CSS_SELECTOR, '.dry01').text
+        try:
+            tel = driver.find_element(By.CSS_SELECTOR, '.dry01').text
+        except:
+            tel = '-'
         print(name, address, tel)
         map_url = driver.find_element(By.CSS_SELECTOR, '.qPoU1').get_attribute('href')
 
-        displayOk1 = driver.find_element(By.CSS_SELECTOR, '#ibu_1').is_displayed();
-        if displayOk1:
+        # 이미지
+        try:
             picture1 = driver.find_element(By.CSS_SELECTOR, '#ibu_1').get_attribute('style').replace('width: 100%; height: 100%; background-image: url("', '').replace('"); background-position: 50% 0px;', '')
-        else:
+        except:
             picture1 = driver.find_element(By.CSS_SELECTOR, '#ugc_1').get_attribute('style').replace('width: 100%; height: 100%; background-image: url("', '').replace('"); background-position: 50% 0px;', '')
-        
-        displayOk2 = driver.find_element(By.CSS_SELECTOR, '#ibu_2').is_displayed();
-        if displayOk2:
-            picture2 = driver.find_element(By.CSS_SELECTOR, '#ibu_2').get_attribute('style').replace('width: 100%; height: 100%; background-image: url("', '').replace('"); background-position: 50% 0px;', '')
-        else:
-            picture2 = driver.find_element(By.CSS_SELECTOR, '#ugc_2').get_attribute('style').replace('width: 100%; height: 100%; background-image: url("', '').replace('"); background-position: 50% 0px;', '')
 
-        displayOk3 = driver.find_element(By.CSS_SELECTOR, '#ibu_3').is_displayed();
-        if displayOk3:
+        # displayOk1 = driver.find_element(By.CSS_SELECTOR, '#ibu_1').is_displayed();
+        # if displayOk1:
+        #     picture1 = driver.find_element(By.CSS_SELECTOR, '#ibu_1').get_attribute('style').replace('width: 100%; height: 100%; background-image: url("', '').replace('"); background-position: 50% 0px;', '')
+        # else:
+        #     picture1 = driver.find_element(By.CSS_SELECTOR, '#ugc_1').get_attribute('style').replace('width: 100%; height: 100%; background-image: url("', '').replace('"); background-position: 50% 0px;', '')
+
+        try:
+            picture2 = driver.find_element(By.CSS_SELECTOR, '#ibu_2').get_attribute('style').replace('width: 100%; height: 100%; background-image: url("', '').replace('"); background-position: 50% 0px;', '')
+        except:
+            picture2 = driver.find_element(By.CSS_SELECTOR, '#ugc_2').get_attribute('style').replace('width: 100%; height: 100%; background-image: url("', '').replace('"); background-position: 50% 0px;', '')
+        
+        # displayOk2 = driver.find_element(By.CSS_SELECTOR, '#ibu_2').is_displayed();
+        # if displayOk2:
+        #     picture2 = driver.find_element(By.CSS_SELECTOR, '#ibu_2').get_attribute('style').replace('width: 100%; height: 100%; background-image: url("', '').replace('"); background-position: 50% 0px;', '')
+        # else:
+        #     picture2 = driver.find_element(By.CSS_SELECTOR, '#ugc_2').get_attribute('style').replace('width: 100%; height: 100%; background-image: url("', '').replace('"); background-position: 50% 0px;', '')
+
+        try:
             picture3 = driver.find_element(By.CSS_SELECTOR, '#ibu_3').get_attribute('style').replace('width: 100%; height: 100%; background-image: url("', '').replace('"); background-position: 50% 0px;', '')
-        else:
+        except:
             picture3 = driver.find_element(By.CSS_SELECTOR, '#ugc_3').get_attribute('style').replace('width: 100%; height: 100%; background-image: url("', '').replace('"); background-position: 50% 0px;', '')
+
+        # displayOk3 = driver.find_element(By.CSS_SELECTOR, '#ibu_3').is_displayed();
+        # if displayOk3:
+        #     picture3 = driver.find_element(By.CSS_SELECTOR, '#ibu_3').get_attribute('style').replace('width: 100%; height: 100%; background-image: url("', '').replace('"); background-position: 50% 0px;', '')
+        # else:
+        #     picture3 = driver.find_element(By.CSS_SELECTOR, '#ugc_3').get_attribute('style').replace('width: 100%; height: 100%; background-image: url("', '').replace('"); background-position: 50% 0px;', '')
 
         driver.find_element(By.CSS_SELECTOR, '.MxgIj').click()
         open_list = driver.find_elements(By.CSS_SELECTOR, '.nNPOq')[1:]

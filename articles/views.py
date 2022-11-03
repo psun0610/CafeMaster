@@ -60,7 +60,7 @@ def index(request):
     
     # 후기가 많은 카페
     commentcafe = []
-    cafes = Cafe.objects.order_by('-comment_count')[:4]
+    cafes = Cafe.objects.order_by('-pk')[:4]
     for cafe in cafes:
         for comment in cafe.comment_set.all():
             if comment.picture != '':
@@ -76,7 +76,15 @@ def index(request):
     return render(request, "articles/index.html", context)
 
 def detail(request, pk):
-    return render(request, "articles/detail.html")
+    cafe = Cafe.objects.get(pk=pk)
+    comment_form = CommentForm()
+
+    context = {
+        'cafe': cafe,
+        'comment' : cafe.comment_set.all(),
+        }
+
+    return render(request, "articles/detail.html", context)
 
 def create_cafe(request):
     if request.method == "POST":

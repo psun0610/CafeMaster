@@ -72,7 +72,6 @@ def detail(request, pk):
         'cafe': cafe,
         'comment' : cafe.comment_set.all(),
         }
-
     return render(request, "articles/detail.html", context)
 
 def create_cafe(request):

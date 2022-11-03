@@ -219,6 +219,79 @@
   .login-form-div {
     padding: 100px 550px;
   }
+
+  /* detail.html */
+  .detail-img-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .detail-img-box>div {
+    display: inline-block;
+    width: 20%;
+    height: 20vw;
+    overflow: hidden;
+  }
+  .detail-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .detail-black {
+    position: relative;
+  }
+  .detail-black-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000071;
+  }
+
+  .detail-box {
+    width: 1320px;
+    margin: 0 auto;
+    padding: 60px 100px;
+  }
+  .detail-box h1 {
+    font-size: 45px;
+    margin-right: 15px;
+    margin-bottom: 0;
+  }
+  .detail-btn {
+    color:#f8f6f3;
+    text-decoration: none;
+  }
+  /* .detail-btn>div {
+    display: inline-block;
+    padding: 6px 15px 4px;
+    margin: 8px 10px;
+    background-color:#9E816C;
+    border-radius: 20px;
+    font-size: 17px;
+  } */
+  .cafe-table {
+    margin: 20px 0;
+    font-size: 18px;
+  }
+  .cafe-table .th {
+    padding-right: 30px;
+    color:#767676;
+  }
+  .cafe-table td>a {
+    color:#9E816C;
+    text-decoration: none;
+  }
+  .detail-tags {
+    display: inline-block;
+    background-color: #CEB39F;
+    margin: 0 16px 0 0;
+  }
+  .hr {
+    color:#9E816C;
+    margin: 50px 0;
+  }
 }
 
 /* 컨테이너 사이즈 */

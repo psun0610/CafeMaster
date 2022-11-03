@@ -19,7 +19,6 @@ class Cafe(models.Model):
     map_url = models.TextField(default='')
     telephone = models.TextField()
     opening = models.TextField()
-    lastorder = models.TimeField()
     picture1 = ProcessedImageField(upload_to='images/', blank=True,
                         processors=[ResizeToFill(1200, 960)],
                         format='JPEG',
@@ -34,7 +33,6 @@ class Cafe(models.Model):
                         options={'quality': 100})
     score = models.IntegerField(default=0)
     hits = models.IntegerField(default=0)
-    additional_info = models.TextField(default='')
     #해시태그
     taste = models.IntegerField(default=0)
     interior = models.IntegerField(default=0)

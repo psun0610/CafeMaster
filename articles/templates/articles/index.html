@@ -18,8 +18,8 @@
 </div>
 
 <!-- 검색 기능 -->
-<form action="#" class="search-form" method="get">
-  <input type="search" class="search-input" placeholder="검색" name="searchs">
+<form action="{% url 'articles:search' %}" class="search-form" method="get">
+  <input type="search" class="search-input" placeholder="지역 또는 카페이름" name="searchs">
   <input type="submit" class="search-btn" value="검색">
 </form>
 
@@ -63,10 +63,8 @@
 <!-- 캐러셀 -->
   <div class="index-tag-img-div swiper-container">
     <div class="swiper-wrapper">
-      {% for swiper_list in swiper_lists %}
-        {% for swiper in swiper_list %}
-          <a href="{% url 'articles:detail' swiper.1.pk %}" class="swiper-slide"><img src="{{ swiper.0.url }}"></a>
-        {% endfor %}
+      {% for swiper in swiper_list %}
+        <a href="{% url 'articles:detail' swiper.pk %}" class="swiper-slide"><img src="{{ swiper.picture1.url }}"></a>
       {% endfor %}
     </div>
     <!-- 페이징 -->
@@ -88,22 +86,22 @@
       <a href=""><h3>더보기</h3></a>
     </div>
     <div class="index-content">
-      {% for recommendcafe in recommend_lists %}
+      {% for recommendcafe in recommend_list %}
         <div>
-          <a href="{% url 'articles:detail' recommendcafe.1.pk %}">
-            <img src="{{ recommendcafe.0.url }}">
+          <a href="{% url 'articles:detail' recommendcafe.pk %}">
+            <img src="{{ recommendcafe.picture1.url }}">
           </a>
           <div class="index-content-cafe-info title-font">
-            <a href="{% url 'articles:detail' recommendcafe.1.pk %}">
+            <a href="{% url 'articles:detail' recommendcafe.pk %}">
               <h2>
-                {{ recommendcafe.1.name }}<span class="index-message"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16">
+                {{ recommendcafe.name }}<span class="index-message"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16">
                   <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                   <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
                 </svg><span>{{ recommendcafe.1.comment_set.all.count }}</span></span>
               </h2>
             </a>
             <h3>
-              {{ recommendcafe.1.address }} | <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-suit-heart-fill index-heart" viewBox="0 0 16 16">
+              {{ recommendcafe.address }} | <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-suit-heart-fill index-heart" viewBox="0 0 16 16">
                 <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
               </svg> 99%
             </h3>
@@ -120,9 +118,9 @@
       <a href=""><h3>더보기</h3></a>
     </div>
     <div class="index-content">
-      {% for closecafe in closecafe_lists %}
-        <a href="{% url 'articles:detail' closecafe.1.pk %}">
-          <img src="{{ closecafe.0.url }}">
+      {% for closecafe in closecafe_list %}
+        <a href="{% url 'articles:detail' closecafe.pk %}">
+          <img src="{{ closecafe.picture1.url }}">
         </a>
       {% endfor %}
     </div>
@@ -134,9 +132,9 @@
       <a href=""><h3>더보기</h3></a>
     </div>
     <div class="index-content">
-      {% for commentcafe in commentcafe_lists %}
-        <a href="{% url 'articles:detail' commentcafe.1.pk %}">
-          <img src="{{ commentcafe.0.url }}">
+      {% for commentcafe in commentcafe_list %}
+        <a href="{% url 'articles:detail' commentcafe.pk %}">
+          <img src="{{ commentcafe.picture1.url }}">
         </a>
       {% endfor %}
     </div>

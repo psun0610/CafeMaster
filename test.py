@@ -5,6 +5,8 @@ import string
 import time
 import os
 import django
+
+
 url_list = []
 datas = []
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CafeMaster.settings")
@@ -80,6 +82,20 @@ def naverMapCrawling(search):
         # else:
         #     picture3 = driver.find_element(By.CSS_SELECTOR, '#ugc_3').get_attribute('style').replace('width: 100%; height: 100%; background-image: url("', '').replace('"); background-position: 50% 0px;', '')
 
+        try:
+            driver.find_element(By.CSS_SELECTOR, '.MxgIj').click()
+            open_list = driver.find_elements(By.CSS_SELECTOR, '.nNPOq')[1:]
+            opening = ''
+            for opens in open_list:
+                try:
+                    day = opens.find_element(By.CSS_SELECTOR, '.X007O > .ob_be > .kGc0c').text
+                    times = opens.find_element(By.CSS_SELECTOR, '.X007O > .ob_be > .qo7A2').text
+                    opening += day + ' ' + times + '\n'
+                except:
+                    break
+        except:
+            opening = '-'
+
         driver.find_element(By.CSS_SELECTOR, '.MxgIj').click()
         open_list = driver.find_elements(By.CSS_SELECTOR, '.nNPOq')[1:]
         opening = ''
@@ -116,7 +132,7 @@ def naverMapCrawling(search):
         # driver.get(f"https://m.map.naver.com/search2/search.naver?query={search}") 
 
         #딱 30개만
-        if cnt > 30:
+        if cnt > 14:
             break
         # return datas
 
@@ -144,8 +160,10 @@ def add_data():
             ).save()
     return result
 
-
+keyword_list = ['서울 홍대 카페','인천 카페','대전 카페','대구 카페', '울산 카페','광주 카페','부산 카페', '수원 권선 카페', '강원도 카페', '경상도 카페', '전라도 카페','제주도 카페', '천안 카페']
 # DB 저장 함수 강제 실행(임시로 실행)
-search = input("검색어를 입력해주세요 >> ")
-naverMapCrawling(search)
-add_data()
+# search = input("검색어를 입력해주세요 >> ")
+for keyword in keyword_list:
+    search = keyword
+    naverMapCrawling(search)
+    add_data()

@@ -134,46 +134,62 @@ def like(request, pk):
     context = {'isLiked': is_liked, 'likeCount': comment.like.count()}
     return JsonResponse(context)
 
-def viewmore(request):
+def viewmore(request, pk):
+    
+    if pk == 1:
     # 사용자 추천 카페 정보
-    recommend = []
-    adr = request.user.area
-    cafeaddress = Cafe.objects.filter(address=adr)
-    cafeadr = cafeaddress.order_by('-score')[:2]
-    for cafe in cafeadr:
-        recommend.append(cafe)
+        recommend = []
+        adr = request.user.area
+        cafeaddress = Cafe.objects.filter(address=adr)
+        cafeadr = cafeaddress.order_by('-score')[:2]
+        for cafe in cafeadr:
+            recommend.append(cafe)
 
+        
+        user_tag = [('taste', request.user.taste),
+                    ('interior', request.user.interior),
+                    ('dessert', request.user.dessert)]
+        reco = sorted(user_tag, reverse=True, key=lambda x:x[1])
+        for i in range(len(user_tag)):
+            fir = Cafe.objects.order_by('-' + reco[i][0])[:2]
+            for cafe in fir:
+                recommend.append(cafe)
+                
+        reco = sorted(user_tag, reverse=True, key=lambda x:x[1])
+        for i in range(len(user_tag)):
+            fir = Cafe.objects.order_by('-' + reco[i][0])[2:6]
+            for cafe in fir:
+                recommend.append(cafe)
     
-    user_tag = [('taste', request.user.taste),
-                ('interior', request.user.interior),
-                ('dessert', request.user.dessert)]
-    reco = sorted(user_tag, reverse=True, key=lambda x:x[1])
-    for i in range(len(user_tag)):
-        fir = Cafe.objects.order_by('-' + reco[i][0])[:2]
-        for cafe in fir:
-            recommend.append(cafe)
-            
-    reco = sorted(user_tag, reverse=True, key=lambda x:x[1])
-    for i in range(len(user_tag)):
-        fir = Cafe.objects.order_by('-' + reco[i][0])[2:6]
-        for cafe in fir:
-            recommend.append(cafe)
+        context = {
+            'recommend' : recommend,
+        }
+        return render(request, "articles/viewmore(re).html", context)    
     
+
     # 가까운 카페
-    
-    adr = request.user.area
-    cafeaddress = Cafe.objects.filter(address=adr)
-    closecafe = cafeaddress.order_by('-score')[:20]
-    
+    elif pk == 2:
+        adr = request.user.area
+        cafes = Cafe.objects.all()
+        closecafe = []
+        for cafe in cafes:
+            if adr in cafe.address:
+                closecafe.append(cafe)
+                if len(closecafe)==20:
+                    break
+
+        context = {
+            'closecafe' : closecafe,
+        }
+        return render(request, "articles/viewmore(cl).html", context)   
                 
     
     # 후기가 많은 카페
-    commentcafe = Cafe.objects.order_by('-pk')[:20]
+    elif pk == 3:
+        commentcafe = Cafe.objects.order_by('-pk')[:20]
 
-    context = {
-        'recommend' : recommend,
-        'closecafe' : closecafe,
-        'commentcafe' : commentcafe,
-    }
-    return render(request, "articles/viewmore.html", context)
+        context = {
+            'commentcafe' : commentcafe,
+        }
+        return render(request, "articles/viewmore(co).html", context)
 

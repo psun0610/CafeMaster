@@ -2,6 +2,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,26 +14,26 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
 </head>
+
 <body>
   <nav class="nav eng-font">
     <div class="d-flex justify-content-between">
       <ul>
         <li class="my-navitem">
           <a href="{% url 'articles:index' %}" class="logo-font nav-logo d-flex align-items-center">
-            <lord-icon
-            src="https://cdn.lordicon.com/kbchswih.json"
-            trigger="hover"
-            colors="outline:#121331,primary:#9e816c,secondary:#ebe6ef"
-            axis-y="45"
-            axis-x="55"
-            style="width:50px;height:50px">
-          </lord-icon>
-          <p class="m-0">Cafe Master</p>
+            <lord-icon src="https://cdn.lordicon.com/kbchswih.json" trigger="hover"
+              colors="outline:#121331,primary:#9e816c,secondary:#ebe6ef" axis-y="45" axis-x="55"
+              style="width:50px;height:50px">
+            </lord-icon>
+            <p class="m-0">Cafe Master</p>
           </a>
         </li>
       </ul>
       <ul class="d-flex">
         {% if request.user.is_authenticated %}
+        <li class="my-navitem">
+          <a href="{% url 'accounts:detail' user.pk %}">MyPage</a>
+        </li>
         <li class="my-navitem">
           <a href="{% url 'accounts:logout' %}">LogOut</a>
         </li>

@@ -35,6 +35,8 @@ class Cafe(models.Model):
     score = models.IntegerField(default=0)
     hits = models.IntegerField(default=0)
     additional_info = models.TextField(default='')
+    # 찜하기
+    bookmarks = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='bookmarksuser')
     #해시태그
     taste = models.IntegerField(default=0)
     interior = models.IntegerField(default=0)
@@ -50,5 +52,6 @@ class Comment(models.Model):
                                 options={'quality': 80})
     cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE)
     tag = MultiSelectField(choices=good, max_choices=6)
+    like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='likeuser')
 
 

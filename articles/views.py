@@ -123,3 +123,17 @@ def create_comment(request, pk):
         commentForm = CommentForm()
     context = {"commentform": commentForm}
     return render(request, "articles/create_comment.html", context)
+
+from django.http import JsonResponse
+def like(request, pk):
+    comment = Comment.objects.get(pk=pk)
+    if request.user in comment.like.all():
+        comment.like.remove(request.user)
+        is_liked = False
+    else:
+        comment.like.add(request.user)
+        is_liked = True
+    
+    context = {'isLiked': is_liked, 'likeCount': comment.like.count()}
+    return JsonResponse(context)
+

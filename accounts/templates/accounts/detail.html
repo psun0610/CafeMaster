@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% block body %}
-<h1>{{ user }}님의 프로필</h1><br>
+<h1>{{ user }}님</h1>
+{% if user.profile_image %}
+<div class="rounded-circle bg-white"
+    style="width:100px; height:100px; background-image:url({{ user.profile_image.url }}); background-repeat:no-repeat; background-position:center; background-size:contain;);">
+</div>
+{% else %}
+<div class="rounded-circle"
+    style="width:100px; height:100px; background-image:url('https://dummyimage.com/35x35/000/fff');">
+</div>
+{% endif %}
+<br>
 
 <div class="d-flex justify-content-start">
     <div class="me-5">

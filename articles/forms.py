@@ -7,7 +7,7 @@ class CafeForm(forms.ModelForm):
 
     class Meta:
         model = Cafe
-        fields = ['name', 'address', 'telephone', 'opening', 'lastorder','picture1',]
+        fields = ['name', 'address', 'telephone', 'opening',]
 
 class CommentForm(forms.ModelForm):
 

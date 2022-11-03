@@ -2,8 +2,16 @@
 {% load django_bootstrap5 %}
 {% block body %}
 
-<h1>검색결과 - 검색어 : <b>"{{ query }}"</b></h1>
-{% for cafe in cafes %}
-<p>{{cafe.name}} | {{cafe.address}}</p>
-{% endfor %}
+<h1>검색결과</h1>
+
+{% if not cafes %}
+  <h4>"{{ query }}"에 대한 검색결과가 없습니다.</h4>
+
+{% else %}
+  {% for cafe in cafes %}
+  <p>{{cafe.name}} | {{cafe.address}}</p>
+  {% endfor %}
+  
+{% endif %}
+
 {% endblock body %}

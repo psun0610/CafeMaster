@@ -13,6 +13,11 @@ def index(request):
     (1,'taste'),
     (2,'interior'),
     (3,'dessert'),
+    (4,'emotion'),
+    (5,'hip'),
+    (6,'study'),
+    (7,'love'),
+    (8,'sight'),
     )
     swiper_list = []
     for num, good in goods:
@@ -99,6 +104,21 @@ def create_comment(request, pk):
                 cafe.score = cafe.score + 1
             if '3' in comment.tag:
                 cafe.dessert = cafe.dessert + 1
+                cafe.score = cafe.score + 1
+            if '4' in comment.tag:
+                cafe.emotion = cafe.emotion + 1
+                cafe.score = cafe.score + 1
+            if '5' in comment.tag:
+                cafe.hip = cafe.hip + 1
+                cafe.score = cafe.score + 1
+            if '6' in comment.tag:
+                cafe.study = cafe.study + 1
+                cafe.score = cafe.score + 1
+            if '7' in comment.tag:
+                cafe.love = cafe.love + 1
+                cafe.score = cafe.score + 1
+            if '8' in comment.tag:
+                cafe.sight = cafe.sight + 1
                 cafe.score = cafe.score + 1
             cafe.save()
             comment.save()

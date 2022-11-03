@@ -10,6 +10,11 @@ good = (
     (1,'커피맛'),
     (2,'인테리어'),
     (3,'디저트'),
+    (4,'감성'),
+    (5,'힙'),
+    (6,'공부'),
+    (7,'사랑'),
+    (8,'경치'),
 )
 
 
@@ -39,6 +44,11 @@ class Cafe(models.Model):
     taste = models.IntegerField(default=0)
     interior = models.IntegerField(default=0)
     dessert = models.IntegerField(default=0)
+    emotion = models.IntegerField(default=0)
+    hip = models.IntegerField(default=0)
+    study = models.IntegerField(default=0)
+    love = models.IntegerField(default=0)
+    sight = models.IntegerField(default=0)
 
 class Comment(models.Model):
     content = models.TextField()

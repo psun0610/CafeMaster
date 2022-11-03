@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from .models import Comment, Cafe
 from .forms import CafeForm, CommentForm
+from django.db.models import Q
 # Create your views here.
 
 
@@ -60,7 +61,7 @@ def index(request):
     
     # 후기가 많은 카페
     commentcafe = []
-    cafes = Cafe.objects.order_by('-comment_count')[:4]
+    cafes = Cafe.objects.order_by('-pk')[:4]
     for cafe in cafes:
         for comment in cafe.comment_set.all():
             if comment.picture != '':
@@ -115,3 +116,16 @@ def create_comment(request, pk):
         commentForm = CommentForm()
     context = {"commentform": commentForm}
     return render(request, "articles/create_comment.html", context)
+
+def search(request):
+    if 'searchs' in request.GET:
+        query = request.GET.get('searchs')
+        cafes = Cafe.objects.all().filter(
+            Q(name__icontains=query) |
+            Q(address__icontains=query)
+        )
+    context = {
+        'query': query,
+        'cafes': cafes,
+    }
+    return render(request, 'articles/search.html', context)

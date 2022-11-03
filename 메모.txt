@@ -1,0 +1,170 @@
+아니 일단
+기준이 어떻게?
+-> 카페에서 taste 점수가 높은 카페 9개의 사진이 있는 Comment중 최신 Comment의 사진
+
+Cafe.objects.order_by('-taste')[:9]
+이건 템플릿에서.comment_set.
+
+.1 .2 <- 인덱스 사용해서 a태그
+
+lordicon
+
+이 카페의 taste, interior, dessert 중에서 가장 높은 것에 맞는 해시태그 context
+
+max(cafe.
+
+서버 사이드 렌더링
+클라이언트 사이드 렌더링 
+python manage.py loaddata ~.json
+
+check_passwrd
+
+###########
+import os
+from urllib.parse import urlparse
+from urllib.request import urlopen
+import django
+import re
+import requests
+from bs4 import BeautifulSoup
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pair_pjt.settings')
+django.setup()
+
+from reviews.models import Movie
+
+url = 'https://movie.naver.com/movie/running/current.naver'
+
+req = urlopen(url)
+byte_data = req.read()
+
+# html 파싱
+text_data = byte_data.decode("utf-8")
+html = BeautifulSoup(text_data, 'html.parser')
+
+# 상영중 영화 주 정보 30개 element 수집(li 태그 30개 수집)
+movie_list = html.select('div[class="lst_wrap"] > ul[class="lst_detail_t1"] > li', limit=30)
+
+# a 태그의 href 속성 수집(url)
+base_url = 'https://movie.naver.com'
+urls = []
+for li in movie_list:
+    a_tag = li.select_one('div[class="thumb"] > a')
+    urls.append(base_url + a_tag.get('href'))
+
+
+# 영화 사이트 이동 : 영화 제목과 줄거리 저장
+def get_movie_data(url):
+    # url 요청
+    request = urlopen(url)
+    byte_data = request.read()
+    # 디코딩
+    text_data = byte_data.decode("utf-8")
+    # html 파싱
+    html = BeautifulSoup(text_data, 'html.parser')
+    soup = html.find("div", class_="poster")
+    # tag & 내용 수집
+    title = html.select_one('div[class="mv_info"] > h3[class="h_movie"] > a').string
+    summary = html.select_one('div[class="story_area"] > p').text
+    img = soup.find('img')["src"]
+
+
+    # dictionary로 저장
+    context = {
+        'title':title,
+        'summary':summary,
+        'img':img[:-15],
+    }
+
+    return context
+
+
+
+
+def add_data():
+    result =[]
+
+    # 자료 수집 함수 실행
+    for url in urls:
+        tmp = get_movie_data(url)
+        # 만들어진 dic를 리스트에 저장
+        result.append(tmp)
+
+    # DB에 저장
+    for item in result:
+        Movie(title=item['title'],
+              img=item['img'],
+              summary=item['summary'],).save()
+
+    return result
+
+# DB 저장 함수 강제 실행(임시로 실행)
+add_data()
+
+
+##############################
+from PIL import Image
+import requests
+import io 
+import dotenv
+import os
+
+dotenv_file = dotenv.find_dotenv()
+dotenv.load_dotenv(dotenv_file)
+
+def get_latitude_longitude(address):
+    client_id = os.environ["id"]
+    client_secret = os.environ["key"]
+    
+    endpoint = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode"
+    url = f"{endpoint}?query={address}"
+
+    headers = {
+        "X-NCP-APIGW-API-KEY-ID": client_id,
+        "X-NCP-APIGW-API-KEY": client_secret,
+    }
+    res = requests.get(url, headers=headers)
+    x_coordinate = res.json()['addresses'][0]['x']
+    y_coordinate = res.json()['addresses'][0]['y']
+    
+    lat, lon = str(x_coordinate), str(y_coordinate)
+    
+    
+    return lon, lat
+
+def get_static_map(x, y):
+    client_id = os.environ["id"]
+    client_secret = os.environ["key"]
+    endpoint = "https://naveropenapi.apigw.ntruss.com/map-static/v2/raster"
+    headers = {
+        "X-NCP-APIGW-API-KEY-ID": client_id,
+        "X-NCP-APIGW-API-KEY": client_secret,
+    }
+    lon, lat = x, y
+    lon, lat = "127.020326886309", "37.5164324582415"
+    _center = f"{lon},{lat}"
+    # 줌 레벨 - 0 ~ 20
+    _level = 16
+    # 가로 세로 크기 (픽셀)
+    _w, _h = 500, 300
+    # 지도 유형 - basic, traffic, satellite, satellite_base, terrain
+    _maptype = "satellite"
+    # 반환 이미지 형식 - jpg, jpeg, png8, png
+    _format = "png"
+    # 고해상도 디스펠레이 지원을 위한 옵션 - 1, 2
+    _scale = 1
+    # 마커
+    _markers = f"""type:d|size:mid|pos:{lon} {lat}|color:red"""
+    # 라벨 언어 설정 - ko, en, ja, zh
+    _lang = "ko"
+    # 대중교통 정보 노출 - Boolean
+    _public_transit = True
+    # 서비스에서 사용할 데이터 버전 파라미터 전달 CDN 캐시 무효화
+    _dataversion = ""
+
+    # URL
+    url = f"{endpoint}?center={_center}&level={_level}&w={_w}&h={_h}&maptype={_maptype}&format={_format}&scale={_scale}&markers={_markers}&lang={_lang}&public_transit={_public_transit}&dataversion={_dataversion}"
+    res = requests.get(url, headers=headers)
+
+    image_data = io.BytesIO(res.content)
+    return image_data

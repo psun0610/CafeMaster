@@ -15,17 +15,30 @@ good = (
 
 class Cafe(models.Model):
     name = models.CharField(max_length=20)
-    hits = models.IntegerField(default=0)
     address = models.CharField(max_length=50)
+    map_url = models.TextField(default='')
     telephone = models.TextField()
     opening = models.TextField()
     lastorder = models.TimeField()
+    picture1 = ProcessedImageField(upload_to='images/', blank=True,
+                        processors=[ResizeToFill(1200, 960)],
+                        format='JPEG',
+                        options={'quality': 100})
+    picture2 = ProcessedImageField(upload_to='images/', blank=True,
+                        processors=[ResizeToFill(1200, 960)],
+                        format='JPEG',
+                        options={'quality': 100})
+    picture3 = ProcessedImageField(upload_to='images/', blank=True,
+                        processors=[ResizeToFill(1200, 960)],
+                        format='JPEG',
+                        options={'quality': 100})
+    score = models.IntegerField(default=0)
+    hits = models.IntegerField(default=0)
+    additional_info = models.TextField(default='')
     #해시태그
     taste = models.IntegerField(default=0)
     interior = models.IntegerField(default=0)
     dessert = models.IntegerField(default=0)
-    score = models.IntegerField(default=0)
-    comment_count = models.IntegerField(default=0)
 
 class Comment(models.Model):
     content = models.TextField()

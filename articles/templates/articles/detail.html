@@ -1,6 +1,104 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load django_bootstrap5 %}
-
+{% block nocontainer %}
+<div class="detail-img-box">
+  <div class="detail-black">
+    <img src="https://placeimg.com/500/500/any"/>
+    <div class="detail-black-box"></div>
+  </div>
+  <div>
+    <img src="https://placeimg.com/500/500/any" />
+  </div>
+  <div>
+    <img src="https://placeimg.com/500/500/any" />
+  </div>
+  <div>
+    <img src="https://placeimg.com/500/500/any" />
+  </div>
+  <div class="detail-black">
+    <img src="https://placeimg.com/500/500/any"/>
+    <div class="detail-black-box"></div>
+  </div>
+</div>
+{% endblock %}
 {% block body %}
+<div class="detail-box">
+  <div class="d-flex justify-content-between align-items-center title-font">
+    <div class="d-flex align-items-center">
+      <h1 class="d-inline-block">{{ cafe.name }}</h1>
+      <div class="d-inline-block">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        </svg>
+        {{ cafe.hits }}
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+          <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+        </svg>
+        {{ cafe.score }}
+      </div>
+    </div>
+    <div>
+      <!-- <a href="" class="detail-btn"><div>찜하기</div></a>
+      <a href="" class="detail-btn"><div>리뷰쓰기</div></a> -->
+      <!-- 찜이 안돼있으면 -->
+      <a href="">
+        <lord-icon
+          src="https://cdn.lordicon.com/rjzlnunf.json"
+          trigger="hover"
+          colors="primary:#121331,secondary:#9e816c"
+          style="width:60px;height:60px">
+        </lord-icon>
+      </a>
+      <!-- 찜이 되면 -->
+      <a href="">
+        <lord-icon
+          src="https://cdn.lordicon.com/hqrgkqvs.json"
+          trigger="loop"
+          style="width:60px;height:60px">
+        </lord-icon>
+      </a>
+
+      <!-- 리뷰쓰기 버튼 -->
+      <a href="">
+        <lord-icon
+          src="https://cdn.lordicon.com/qtqvorle.json"
+          trigger="hover"
+          colors="outline:#121331,primary:#9e816c,secondary:#f8f6f3,tertiary:#9e816c"
+          stroke="80"
+          style="width:60px;height:60px">
+        </lord-icon>
+      </a>
+    </div>
+  </div>
+  <!-- 테이블 -->
+  <table class="cafe-table title-font">
+    <tbody>
+      <tr>
+        <td class="th">주소</td>
+        <td>{{ cafe.address }}</td>
+      </tr>
+      <tr>
+        <td class="th">지도</td>
+        <td><a href="{{ cafe.map_url }}"">{{ cafe.name }} 지도보기</a></td>
+      </tr>
+      <tr>
+        <td class="th">전화번호</td>
+        <td>{{ cafe.telephone }}</td>
+      </tr>
+      <tr>
+        <td class="th">영업시간</td>
+        <td>{{ cafe.opening }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- 해시태그 -->
+  <div class="kor-font fw-bold">
+    <div class="tags detail-tags">#감성충만한</div>
+    <div class="tags detail-tags">#감성충만한</div>
+    <div class="tags detail-tags">#감성충만한</div>
+  </div>
+  <hr class="hr">
+</div>
+<script src="https://cdn.lordicon.com/qjzruarw.js"></script>
 {% endblock %}

@@ -77,7 +77,15 @@ def index(request):
     return render(request, "articles/index.html", context)
 
 def detail(request, pk):
-    return render(request, "articles/detail.html")
+    cafe = Cafe.objects.get(pk=pk)
+    comment_form = CommentForm()
+
+    context = {
+        'cafe': cafe,
+        'comment' : cafe.comment_set.all(),
+        }
+
+    return render(request, "articles/detail.html", context)
 
 def create_cafe(request):
     if request.method == "POST":
@@ -129,3 +137,16 @@ def search(request):
         'cafes': cafes,
     }
     return render(request, 'articles/search.html', context)
+
+from django.http import JsonResponse
+def like(request, pk):
+    comment = Comment.objects.get(pk=pk)
+    if request.user in comment.like.all():
+        comment.like.remove(request.user)
+        is_liked = False
+    else:
+        comment.like.add(request.user)
+        is_liked = True
+    
+    context = {'isLiked': is_liked, 'likeCount': comment.like.count()}
+    return JsonResponse(context)

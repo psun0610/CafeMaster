@@ -46,13 +46,8 @@ def index(request):
     
     # 가까운 카페
     adr = request.user.area
-    cafes = Cafe.objects.all()
-    closecafe = []
-    for cafe in cafes:
-        if adr in cafe.address:
-            closecafe.append(cafe)
-            if len(closecafe)==4:
-                break
+    cafeaddress = Cafe.objects.filter(address=adr)
+    closecafe = cafeaddress.order_by('-score')[2:6]
 
         
     
@@ -62,7 +57,7 @@ def index(request):
     context = {
         'swiper_list': swiper_list,
         'recommend_list' : recommend,
-        'closecafe_list' : closecafe,
+        'commentcafe_list' : closecafe,
         'commentcafe_list' : commentcafe,
     }
     return render(request, "articles/index.html", context)
@@ -147,7 +142,7 @@ def create_comment(request, pk):
                 cafe.score = cafe.score + 1
             cafe.save()
             comment.save()
-            return redirect("articles:index")
+            return redirect("articles:detail", pk)
     else:
         commentForm = CommentForm()
     context = {"commentform": commentForm}

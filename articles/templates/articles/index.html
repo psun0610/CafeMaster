@@ -112,6 +112,8 @@
     </div>
   </article>
 
+  <!-- 로그인 하지 않으면 띄우지 않음 -->
+  {% if request.user.is_authenticated %}
   <article>
     <div class="index-title">
       <h2>나와 가까운</h2>
@@ -125,6 +127,7 @@
       {% endfor %}
     </div>
   </article>
+  {% endif %}
 
   <article>
     <div class="index-title">

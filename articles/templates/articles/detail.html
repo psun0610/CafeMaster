@@ -104,33 +104,39 @@
   <!-- 리뷰 -->
   <div class="detail-review-box title-font">
     {% for com in comment %}
-    <div class="d-flex justify-content-center">
-      <!-- 리뷰 유저 프로필 -->
-      <div class="detail-user-profile">
-        <a href="{% url 'accounts:detail' com.user.pk %}">
-          <img src="{{ com.user.profile_image.url }}">
-        </a>
-        <a href="{% url 'accounts:detail' com.user.pk %}">
-          <p>{{ com.user.name }}</p>
-        </a>
+    <div>
+      <div class="d-flex justify-content-center">
+        <!-- 리뷰 유저 프로필 -->
+        <div class="detail-user-profile">
+          <a href="{% url 'accounts:detail' com.user.pk %}">
+            <img src="{{ com.user.profile_image.url }}">
+          </a>
+          <a href="{% url 'accounts:detail' com.user.pk %}">
+            {% if com.user.name %}
+            <p>{{ com.user.name }}</p>
+            {% else %}
+            <p>{{ com.user.username }}</p>
+            {% endif %}
+          </a>
+        </div>
+        <!-- 리뷰 코멘트 -->
+        <div class="detail-user-comment">
+          <!-- 날짜 -->
+          <p>{{ com.created_at }}</p>
+          <div>{{ com.content }}</div>
+        </div>
       </div>
-      <!-- 리뷰 코멘트 -->
-      <div class="detail-user-comment">
-        <!-- 날짜 -->
-        <p>{{ com.created_at }}</p>
-        <div>{{ com.content }}</div>
-      </div>
+      <!-- 이미지 -->
+      <!-- <div class="detail-user-img-box">
+        {% if com.picture %}
+        <img src="{{ com.picture.url }}">
+        {% endif %}
+      </div> -->
     </div>
-    <!-- 이미지 -->
-    <div class="detail-user-img-box">
-      {% if com.picture %}
-      <img src="{{ com.picture.url }}">
-      {% endif %}
-    </div>
-  </div>
     {% empty %}
-      <p class="detail-empty">리뷰가 없어요 ㅠ_ㅠ</p>
-  {% endfor %}
+    <p class="detail-empty">리뷰가 없어요 ㅠ_ㅠ</p>
+    {% endfor %}
+  </div>
 </div>
 <script src="https://cdn.lordicon.com/qjzruarw.js"></script>
 {% endblock %}

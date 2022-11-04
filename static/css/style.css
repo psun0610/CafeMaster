@@ -207,13 +207,29 @@
     color:#767676;
     font-size: 14px;
   }
-  .index-content-cafe-info>h3 {
+  .index-content-cafe-info {
+    width: 310px;
+  }
+  .index-content-cafe-info .index-cafe-address {
+    display: flex;
+    align-items: center;
+  }
+  .index-cafe-address-h3-1 {
+    max-width: 255px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .index-content-cafe-info h3 {
     font-size: 16px;
     margin: 0;
+    text-overflow: ellipsis;
+    display: inline-block;
   }
   .index-heart {
     color: #DE1A1A;
     width: 16px;
+    margin: 0 2px 0 8px;
   }
 
   /* accounts */
@@ -282,6 +298,8 @@
   .cafe-table .th {
     padding-right: 30px;
     color:#767676;
+    display: flex;
+    align-items: flex-start;
   }
   .cafe-table td>a {
     color:#9E816C;
@@ -340,9 +358,6 @@
     border-radius: 30px;
     box-shadow: 2px 2px 10px #9e816c7e;
   }
-  .comment-form:focus-visible {
-    /* border: 1px solid #9E816C; */
-  }
   .comment-title {
     margin: 30px 0;
   }
@@ -372,6 +387,17 @@
     border-radius: 10px;;
     border: 0;
     font-size: 18px;
+  }
+
+  /* articles/search.html */
+  .search-title {
+    text-align: center;
+    padding: 50px 0 30px;
+  }
+  .no-search {
+    text-align: center;
+    font-size: 20px;
+    padding: 60px 0;
   }
 }
 

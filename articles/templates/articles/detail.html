@@ -41,7 +41,25 @@
     <div>
       <!-- <a href="" class="detail-btn"><div>찜하기</div></a>
       <a href="" class="detail-btn"><div>리뷰쓰기</div></a> -->
+
+      <!-- 찜이 되면 -->
+      {% if request.user in cafe.bookmark.all %}
+      <i id="like-btn" data-cafe-id="{{ cafe.pk }}" class="bi bi-heart-fill"></i>
+      <a href="" id="like-btn" data-article-id="{{ cafe.pk }}">
+      <a href="" class="text-decoration-none">
+        <lord-icon
+          src="https://cdn.lordicon.com/hqrgkqvs.json"
+          trigger="loop"
+          style="width:60px;height:60px">
+        </lord-icon>
+      </a>
+
       <!-- 찜이 안돼있으면 -->
+      {% else %}
+      <i id="like-btn" data-cafe-id="{{ cafe.pk }}" class="bi bi-heart"></i>
+      <a href="" id="like-btn" data-article-id="{{ cafe.pk }}">
+
+      <!-- 찜이 되면 -->
       <a href="" class="text-decoration-none">
         <lord-icon
           src="https://cdn.lordicon.com/rjzlnunf.json"
@@ -50,14 +68,7 @@
           style="width:60px;height:60px">
         </lord-icon>
       </a>
-      <!-- 찜이 되면 -->
-      <a href="" class="text-decoration-none">
-        <lord-icon
-          src="https://cdn.lordicon.com/hqrgkqvs.json"
-          trigger="loop"
-          style="width:60px;height:60px">
-        </lord-icon>
-      </a>
+      {% endif %}
 
       <!-- 리뷰쓰기 버튼 -->
       <a href="{% url 'articles:create_comment' cafe.pk %}" class="text-decoration-none">
@@ -67,7 +78,7 @@
           colors="outline:#121331,primary:#9e816c,secondary:#f8f6f3,tertiary:#9e816c"
           stroke="80"
           style="width:60px;height:60px">
-        </lord-icon>
+        </lord-icon></div>
       </a>
     </div>
   </div>
@@ -80,7 +91,8 @@
       </tr>
       <tr>
         <td class="th">지도</td>
-        <td><a href="{{ cafe.map_url }}">{{ cafe.name }} 지도보기</a></td>
+        <td><a href="{{ cafe.map_url }}"> {{ cafe.name }} 지도보기</a></td>
+
       </tr>
       <tr>
         <td class="th">전화번호</td>
@@ -139,4 +151,29 @@
   </div>
 </div>
 <script src="https://cdn.lordicon.com/qjzruarw.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+        // (1) 좋아요 버튼
+        const likeBtn = document.querySelector('#like-btn')
+        // (2) 좋아요 버튼을 클릭하면, 함수 실행
+        likeBtn.addEventListener('click', function (event) {
+            // 서버로 비동기 요청을 하고 싶음
+            console.log(event.target.dataset)
+            axios({
+                method: 'get',
+                url: `/articles/${event.target.dataset.cafeId}/bookmark/`
+            })
+                .then(response => {
+                    if (response.data.marked === true) {
+                        event.target.classList.add('bi-heart-fill')
+                        event.target.classList.remove('bi-heart')
+                    } else {
+                        event.target.classList.add('bi-heart')
+                        event.target.classList.remove('bi-heart-fill')
+                    }
+                    const likeCount = document.querySelector('#like-count')
+                    likeCount.innerText = response.data.likeCount
+                })
+        })
+</script>
 {% endblock %}

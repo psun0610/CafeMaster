@@ -43,28 +43,26 @@
       <a href="" class="detail-btn"><div>리뷰쓰기</div></a> -->
     <!-- 찜이 되면 -->
     {% if request.user in cafe.bookmark.all %}
-    <i id="like-btn" data-cafe-id="{{ cafe.pk }}" class="bi bi-heart-fill"></i>
-      <a href="" class="text-decoration-none">
-        <lord-icon
-          src="https://cdn.lordicon.com/hqrgkqvs.json"
-          trigger="loop"
-          style="width:60px;height:60px">
-        </lord-icon>
-      </a>
+    <!-- <i id="like-btn" data-cafe-id="{{ cafe.pk }}" class="bi bi-heart-fill"></i> -->
+      <lord-icon
+        src="https://cdn.lordicon.com/hqrgkqvs.json"
+        trigger="loop"
+        style="width:60px;height:60px"
+        id="like-btn"
+        data-cafe-id="{{ cafe.pk }}">
+      </lord-icon>
 
       <!-- 찜이 안돼있으면 -->
       {% else %}
-      <i id="like-btn" data-cafe-id="{{ cafe.pk }}" class="bi bi-heart"></i>
-
-      <!-- 찜이 되면 -->
-      <a href="" class="text-decoration-none">
-        <lord-icon
-          src="https://cdn.lordicon.com/rjzlnunf.json"
-          trigger="hover"
-          colors="primary:#121331,secondary:#9e816c"
-          style="width:60px;height:60px">
-        </lord-icon>
-      </a>
+      <!-- <i id="like-btn" data-cafe-id="{{ cafe.pk }}" class="bi bi-heart"></i> -->
+      <lord-icon
+        src="https://cdn.lordicon.com/rjzlnunf.json"
+        trigger="hover"
+        colors="primary:#121331,secondary:#9e816c"
+        style="width:60px;height:60px"
+        id="like-btn"
+        data-cafe-id="{{ cafe.pk }}">
+      </lord-icon>
       {% endif %}
 
       <!-- 리뷰쓰기 버튼 -->
@@ -95,8 +93,9 @@
         <td>{{ cafe.telephone }}</td>
       </tr>
       <tr>
-        <td class="th">영업시간</td>
-        <td>{{ cafe.opening }}</td>
+        <td class="th"><p>영업시간</p></td>
+        <td>{{ cafe.opening|linebreaksbr }}</td>
+        <!-- <td>{{ cafe.opening }}</td> -->
       </tr>
     </tbody>
   </table>
@@ -116,7 +115,12 @@
       <!-- 리뷰 유저 프로필 -->
       <div class="detail-user-profile">
         <a href="{% url 'accounts:detail' com.user.pk %}">
-          <img src="{{ com.user.profile_image.url }}">
+          <!-- 프로필 사진이 있으면 -->
+          {% if com.user.profile_image %}
+            <img src="{{ com.user.profile_image.url }}">
+          {% else %}
+            <img src="{% static 'images/user.png' %}">
+          {% endif %}
         </a>
         <a href="{% url 'accounts:detail' com.user.pk %}">
           <p>{{ com.user.name }}</p>
@@ -135,35 +139,66 @@
       <img src="{{ com.picture.url }}">
       {% endif %}
     </div>
-  </div>
     {% empty %}
-      <p class="detail-empty">리뷰가 없어요 ㅠ_ㅠ</p>
-  {% endfor %}
+    <p class="detail-empty">리뷰가 없어요 ㅠ_ㅠ</p>
+    {% endfor %}
+  </div>
 </div>
 <script src="https://cdn.lordicon.com/qjzruarw.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-        // (1) 좋아요 버튼
-        const likeBtn = document.querySelector('#like-btn')
-        // (2) 좋아요 버튼을 클릭하면, 함수 실행
-        likeBtn.addEventListener('click', function (event) {
-            // 서버로 비동기 요청을 하고 싶음
-            console.log(event.target.dataset)
-            axios({
-                method: 'get',
-                url: `/articles/${event.target.dataset.cafeId}/bookmark/`
-            })
-                .then(response => {
-                    if (response.data.marked === true) {
-                        event.target.classList.add('bi-heart-fill')
-                        event.target.classList.remove('bi-heart')
-                    } else {
-                        event.target.classList.add('bi-heart')
-                        event.target.classList.remove('bi-heart-fill')
-                    }
-                    const likeCount = document.querySelector('#like-count')
-                    likeCount.innerText = response.data.likeCount
-                })
-        })
+  // (1) 좋아요 버튼
+  const likeBtn = document.querySelector('#like-btn')
+  // (2) 좋아요 버튼을 클릭하면, 함수 실행
+  likeBtn.addEventListener('click', function (event) {
+    // 서버로 비동기 요청을 하고 싶음
+    console.log(event.target.dataset)
+    axios({
+        method: 'get',
+        url: `/articles/${event.target.dataset.cafeId}/bookmark/`
+    })
+    .then(response => {
+      if (response.data.marked === true) {
+        // marked 되어있으면 찜이 된 것
+        // 찜이 되어야 뜨는 것들을 지우고,
+        // 찜이 안될 때 상태로 돌아감
+        event.target.setAttribute('src', 'https://cdn.lordicon.com/rjzlnunf.json')
+        event.target.setAttribute('trigger', 'hover')
+        event.target.setAttribute('colors', 'primary:#121331,secondary:#9e816c')
+        } else {
+        // marked 안되어있으면 찜이 안된 것
+        event.target.setAttribute('src', 'https://cdn.lordicon.com/hqrgkqvs.json')
+        event.target.setAttribute('trigger', 'loop')
+        event.target.removeAttribute('colors')
+        }
+      const likeCount2 = document.querySelector('#like-count')
+      likeCount.innerText = response.data.likeCount
+    })
+  })
+// =========================
+  if (response.data.is_like === true) {
+          const oldLordIcon = document.querySelector("#like-btn")
+          const newLordIcon = document.createElement("lord-icon")
+          newLordIcon.src = "https://cdn.lordicon.com/iwaotjbp.json"
+          newLordIcon.trigger = "morph"
+          newLordIcon.style = "width:45px;height:45px"
+          newLordIcon.id = "like-btn"
+          newLordIcon.setAttribute('data-store-id', `${event.target.dataset.storeId}`);
+          likeBtn.replaceChild(newLordIcon, oldLordIcon)
+        } else {
+          const oldLordIcon = document.querySelector("#like-btn")
+          const newLordIcon = document.createElement("lord-icon")
+          newLordIcon.src = "https://cdn.lordicon.com/rjzlnunf.json"
+          newLordIcon.trigger = "morph"
+          newLordIcon.colors = "primary:#121331,secondary:#e83a30"
+          newLordIcon.style = "width:45px;height:45px"
+          newLordIcon.id = "like-btn"
+          newLordIcon.setAttribute('data-store-id', `${event.target.dataset.storeId}`);
+          likeBtn.replaceChild(newLordIcon, oldLordIcon)
+        }
+
 </script>
 {% endblock %}
+
+
+

@@ -195,7 +195,10 @@ def like(request, pk):
         comment.like.add(request.user)
         is_liked = True
     
-    context = {'isLiked': is_liked, 'likeCount': comment.like.count()}
+    context = {
+        'isLiked': is_liked,
+        'likeCount': comment.like.count(),
+    }
     return JsonResponse(context)
 
 def viewmore(request, pk):
@@ -295,10 +298,6 @@ def viewmore(request, pk):
             return render(request, "articles/viewmore(co).html", context)
 
 
-
-                
-    
-
 def bookmark(request, pk):
     cafe = Cafe.objects.get(pk=pk)
     if request.user in cafe.bookmarks.all():
@@ -307,6 +306,9 @@ def bookmark(request, pk):
     else:
         cafe.bookmarks.add(request.user)
         marked = True
-    
-    context = {'marked': marked, 'likeCount': cafe.bookmarks.count()}
+    print('11')
+    context = {
+        'marked': marked,
+        'likeCount2': cafe.bookmarks.count(),
+    }
     return JsonResponse(context)

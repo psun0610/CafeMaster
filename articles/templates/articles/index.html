@@ -20,7 +20,7 @@
 </div>
 
 <!-- 검색 기능 -->
-<form action="{% url 'articles:search' %}" class="search-form" method="get">
+<form action="{% url 'articles:search' %}" class="search-form title-font" method="get">
   <input type="search" class="search-input" placeholder="지역 또는 카페이름" name="searchs">
   <input type="submit" class="search-btn" value="검색">
 </form>
@@ -102,11 +102,14 @@
                 </svg><span>{{ recommendcafe.1.comment_set.all.count }}</span></span>
               </h2>
             </a>
-            <h3>
-              {{ recommendcafe.address }} | <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-suit-heart-fill index-heart" viewBox="0 0 16 16">
+            <!-- 주소 -->
+            <div class="index-cafe-address">
+              <h3 class="index-cafe-address-h3-1">{{ recommendcafe.address }}</h3>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-suit-heart-fill index-heart" viewBox="0 0 16 16">
                 <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
-              </svg> 99%
-            </h3>
+              </svg>
+              <h3>99%</h3>
+            </div>
           </div>
         </div>
 
@@ -123,9 +126,28 @@
     </div>
     <div class="index-content">
       {% for closecafe in closecafe_list %}
+      <div>
         <a href="{% url 'articles:detail' closecafe.pk %}">
           <img src="{{ closecafe.picture1 }}">
         </a>
+        <div class="index-content-cafe-info title-font">
+          <a href="{% url 'articles:detail' closecafe.pk %}">
+            <h2>
+              {{ closecafe.name }}<span class="index-message"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16">
+                <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+              </svg><span>{{ closecafe.1.comment_set.all.count }}</span></span>
+            </h2>
+          </a>
+          <div class="index-cafe-address">
+            <h3 class="index-cafe-address-h3-1">{{ closecafe.address }}</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-suit-heart-fill index-heart" viewBox="0 0 16 16">
+              <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+            </svg>
+            <h3>99%</h3>
+          </div>
+        </div>
+      </div>
       {% endfor %}
     </div>
   </article>
@@ -138,21 +160,39 @@
     </div>
     <div class="index-content">
       {% for commentcafe in commentcafe_list %}
+      <div>
         <a href="{% url 'articles:detail' commentcafe.pk %}">
           <img src="{{ commentcafe.picture1 }}">
         </a>
+        <div class="index-content-cafe-info title-font">
+          <a href="{% url 'articles:detail' commentcafe.pk %}">
+            <h2>
+              {{ commentcafe.name }}<span class="index-message"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16">
+                <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+              </svg><span>{{ commentcafe.1.comment_set.all.count }}</span></span>
+            </h2>
+          </a>
+          <div class="index-cafe-address">
+            <h3 class="index-cafe-address-h3-1">{{ commentcafe.address }}</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-suit-heart-fill index-heart" viewBox="0 0 16 16">
+              <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+            </svg>
+            <h3>99%</h3>
+          </div>
+        </div>
+      </div>
       {% endfor %}
     </div>
   </article>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
-<script src="https://cdn.lordicon.com/qjzruarw.js"></script>
 <script>
 new Swiper('.swiper-container', {
 
 slidesPerView : 3, // 동시에 보여줄 슬라이드 갯수
-spaceBetween : 0, // 슬라이드간 간격
+spaceBetween : 1, // 슬라이드간 간격
 slidesPerGroup : 3, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
 
 // 그룹수가 맞지 않을 경우 빈칸으로 메우기

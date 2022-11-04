@@ -4,21 +4,23 @@
 
 {% block body %} 
 <!-- 로고 -->
-<div class="index-logo logo-font d-flex justify-content-center align-items-center">
-  <lord-icon
-    src="https://cdn.lordicon.com/kbchswih.json"
-    trigger="hover"
-    colors="outline:#121331,primary:#9e816c,secondary:#ebe6ef"
-    axis-y="45"
-    axis-x="55"
-    style="width:120px;height:120px">
-  </lord-icon>
-  
-  <p class="m-0 d-inline-block">Cafe Master</p>
+<div class="index-logo logo-font">
+  <a href="{% url 'articles:index' %}" class="d-flex justify-content-center align-items-center">
+    <lord-icon
+      src="https://cdn.lordicon.com/kbchswih.json"
+      trigger="hover"
+      colors="outline:#121331,primary:#9e816c,secondary:#ebe6ef"
+      axis-y="45"
+      axis-x="55"
+      style="width:120px;height:120px">
+    </lord-icon>
+    
+    <p class="m-0 d-inline-block">Cafe Master</p>
+  </a>
 </div>
 
 <!-- 검색 기능 -->
-<form action="{% url 'articles:search' %}" class="search-form" method="get">
+<form action="{% url 'articles:search' %}" class="search-form title-font" method="get">
   <input type="search" class="search-input" placeholder="지역 또는 카페이름" name="searchs">
   <input type="submit" class="search-btn" value="검색">
 </form>
@@ -43,20 +45,18 @@
             </svg><span>{{ recommendcafe.1.comment_set.all.count }}</span></span>
             </h2>
         </a>
-        <h3>
-            {{ recommendcafe.address }} | <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-suit-heart-fill index-heart" viewBox="0 0 16 16">
+        <div class="index-cafe-address">
+          <h3 class="index-cafe-address-h3-1">{{ recommendcafe.address }}</h3>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-suit-heart-fill index-heart" viewBox="0 0 16 16">
             <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
-            </svg> 99%
-        </h3>
+          </svg>
+          <h3>99%</h3>
         </div>
+      </div>
     </div>
 
 {% endfor %}
 </div>
 </article>
-
-
-
-
 
 {% endblock body %}

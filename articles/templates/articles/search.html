@@ -2,16 +2,55 @@
 {% load django_bootstrap5 %}
 {% block body %}
 
-<h1>검색결과</h1>
+<h1 class="search-title kor-font">Search Result</h1>
 
 {% if not cafes %}
-  <h4>"{{ query }}"에 대한 검색결과가 없습니다.</h4>
-
+  <form action="{% url 'articles:search' %}" class="search-form title-font" method="get">
+    <input type="search" class="search-input" placeholder="지역 또는 카페이름" name="searchs">
+    <input type="submit" class="search-btn" value="검색">
+  </form>
+  <h4 class="no-search title-font">"{{ query }}"에 대한 검색결과가 없습니다.</h4>
 {% else %}
-  {% for cafe in cafes %}
+  <!-- {% for cafe in cafes %}
   <p>{{cafe.name}} | {{cafe.address}}</p>
-  {% endfor %}
-  
+  {% endfor %} -->
+  <!-- 검색 기능 -->
+<form action="{% url 'articles:search' %}" class="search-form title-font" method="get">
+  <input type="search" class="search-input" placeholder="지역 또는 카페이름" name="searchs">
+  <input type="submit" class="search-btn" value="검색">
+</form>
+
+<div class="index-article-container title-font">
+<article>
+<div class="index-content">
+    {% for cafe in cafes %}
+    <div>
+      <a href="{% url 'articles:detail' cafe.pk %}">
+        <img src="{{ cafe.picture1 }}">
+      </a>
+      <div class="index-content-cafe-info title-font">
+        <a href="{% url 'articles:detail' cafe.pk %}">
+          <h2>
+          {{ cafe.name }}<span class="index-message"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16">
+              <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+              <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+          </svg><span>{{ cafe.1.comment_set.all.count }}</span></span>
+          </h2>
+        </a>
+        <div class="index-cafe-address">
+          <h3 class="index-cafe-address-h3-1">{{ cafe.address }}</h3>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-suit-heart-fill index-heart" viewBox="0 0 16 16">
+            <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+          </svg>
+          <h3>99%</h3>
+        </div>
+      </div>
+    </div>
+
+{% endfor %}
+</div>
+</article>
+
 {% endif %}
 
 {% endblock body %}

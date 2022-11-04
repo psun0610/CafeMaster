@@ -296,7 +296,6 @@
     color:#9E816C;
     margin: 50px 0;
   }
-
   .detail-review-box {
     margin-bottom: 30px;
   }
@@ -330,6 +329,15 @@
   .detail-empty {
     text-align: center;
     font-size: 17px;
+  }
+  /* articles/create_comment */
+  .comment-form {
+    width: 1000px;
+    height: 500px;
+    justify-content: center;
+  }
+  .comment-title {
+    margin-bottom: 30px;
   }
 }
 

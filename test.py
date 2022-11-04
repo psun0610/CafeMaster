@@ -154,4 +154,9 @@ keyword_list = ['서울 홍대 카페','인천 카페','대전 카페','대구 �
 # search = input("검색어를 입력해주세요 >> ")
 for keyword in keyword_list:
     search = keyword
+<<<<<<< HEAD
     naverMapCrawling(search)
+=======
+    naverMapCrawling(search)
+add_data()
+>>>>>>> 0daf347e8c9cd59c53650283ce976957223f6b32

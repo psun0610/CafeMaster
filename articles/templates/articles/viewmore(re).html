@@ -32,7 +32,7 @@
     {% for recommendcafe in recommend%}
     <div>
         <a href="{% url 'articles:detail' recommendcafe.pk %}">
-        <img src="{{ recommendcafe.picture1.url }}">
+        <img src="{{ recommendcafe.picture1 }}">
         </a>
         <div class="index-content-cafe-info title-font">
         <a href="{% url 'articles:detail' recommendcafe.pk %}">

@@ -4,7 +4,7 @@ from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 
 class User(AbstractUser):
-
+    name = models.CharField(max_length=10)
     followings = models.ManyToManyField('self', symmetrical=False, related_name='followers')
     area = models.CharField(max_length=50, default='서울')
     profile_image = ProcessedImageField(upload_to='images/', blank=True,

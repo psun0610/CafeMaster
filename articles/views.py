@@ -167,7 +167,9 @@ def create_comment(request, pk):
             return redirect("articles:detail", pk)
     else:
         commentForm = CommentForm()
-    context = {"commentform": commentForm}
+    context = {
+        "commentform": commentForm,
+    }
     return render(request, "articles/create_comment.html", context)
 
 def search(request):

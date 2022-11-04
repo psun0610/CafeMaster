@@ -155,4 +155,4 @@ keyword_list = ['서울 홍대 카페','인천 카페','대전 카페','대구 �
 for keyword in keyword_list:
     search = keyword
     naverMapCrawling(search)
-    add_data()
+add_data()

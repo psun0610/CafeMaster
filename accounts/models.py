@@ -14,3 +14,8 @@ class User(AbstractUser):
     taste = models.IntegerField(default=0)
     interior = models.IntegerField(default=0)
     dessert = models.IntegerField(default=0)
+    emotion = models.IntegerField(default=0)
+    hip = models.IntegerField(default=0)
+    study = models.IntegerField(default=0)
+    love = models.IntegerField(default=0)
+    sight = models.IntegerField(default=0)

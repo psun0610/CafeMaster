@@ -292,6 +292,15 @@
     color:#9E816C;
     margin: 50px 0;
   }
+
+  .detail-review-box {
+    
+  }
+  .detail-user-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 /* 컨테이너 사이즈 */

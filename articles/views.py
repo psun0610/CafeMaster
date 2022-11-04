@@ -73,7 +73,6 @@ def index(request):
                 if len(closecafe)==4:
                     break
 
-
         
     
     # 후기가 많은 카페
@@ -82,7 +81,7 @@ def index(request):
     context = {
         'swiper_list': swiper_list,
         'recommend_list' : recommend,
-        'closecafe_list' : closecafe,
+        'commentcafe_list' : closecafe,
         'commentcafe_list' : commentcafe,
     }
     return render(request, "articles/index.html", context)
@@ -167,7 +166,7 @@ def create_comment(request, pk):
                 cafe.score = cafe.score + 1
             cafe.save()
             comment.save()
-            return redirect("articles:index")
+            return redirect("articles:detail", pk)
     else:
         commentForm = CommentForm()
     context = {"commentform": commentForm}

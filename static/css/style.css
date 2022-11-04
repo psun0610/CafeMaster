@@ -74,10 +74,14 @@
   /* index.html */
   .index-logo {
     padding: 60px 0 30px;
-    color: black;
     text-align: center;
     font-size: 45px;
   }
+  .index-logo > a{
+    color: black;
+    text-decoration: none;
+  }
+
   .search-form {
     text-align: center;
   }
@@ -246,7 +250,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #00000071;
+    background-color: #00000099;
   }
 
   .detail-box {
@@ -292,6 +296,41 @@
     color:#9E816C;
     margin: 50px 0;
   }
+
+  .detail-review-box {
+    margin-bottom: 30px;
+  }
+  .detail-user-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .detail-user-profile img {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+  }
+  .detail-user-profile a {
+    color:#000000;
+    text-decoration: none;
+  }
+  .detail-user-profile p {
+    margin: 0;
+    font-size: 17px;
+  }
+  .detail-user-comment {
+    width: 900px;
+    margin-left: 30px;
+  }
+  .detail-user-comment p {
+    margin-bottom: 5px;
+    color:#767676;
+  }
+  .detail-empty {
+    text-align: center;
+    font-size: 17px;
+  }
 }
 
 /* 컨테이너 사이즈 */
@@ -300,7 +339,7 @@
   .my-container {
     max-width: 100.0000vw;
     margin: 0 auto;
-    background-color: #f8f6f39d;
+    background-color: #f8f5f39d;
   }
   
   .nav {

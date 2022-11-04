@@ -72,8 +72,6 @@ def index(request):
                 closecafe.append(cafe)
                 if len(closecafe)==4:
                     break
-
-        
     
     # 후기가 많은 카페
     commentcafe = Cafe.objects.order_by('-pk')[:4]
@@ -81,7 +79,7 @@ def index(request):
     context = {
         'swiper_list': swiper_list,
         'recommend_list' : recommend,
-        'commentcafe_list' : closecafe,
+        'closecafe_list' : closecafe,
         'commentcafe_list' : commentcafe,
     }
     return render(request, "articles/index.html", context)

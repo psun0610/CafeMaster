@@ -1,12 +1,287 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% block body %}
-<div class="form-div noto-sans">
-  <h2 class="eng-font">SignUp</h2>
+<style>
+  div {
+    display: block;
+  }
+
+  .css-pculus {
+    min-width: 1050px;
+    margin-top: 50px;
+    margin-bottom: 60px;
+    background-color: rgb(255, 255, 255);
+  }
+
+  .label-div {
+    margin-bottom: 50px;
+    font-size: 28px;
+    line-height: 35px;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: -1px;
+    color: rgb(51, 51, 51);
+  }
+
+  .css-mhmtvt {
+    width: 640px;
+    margin: 0px auto;
+  }
+
+  .must-div {
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgb(51, 51, 51);
+    font-size: 12px;
+    color: rgb(102, 102, 102);
+    line-height: 17px;
+    text-align: right;
+  }
+
+  .css-y8aj3r {
+    padding: 0px;
+  }
+
+  .css-1pjgd36 {
+    display: inline-flex;
+    width: 100%;
+    padding: 10px 20px;
+  }
+
+  .css-1y8737n {
+    width: 139px;
+    padding-top: 12px;
+  }
+
+  .css-82a6rk {
+    flex: 1 1 0%;
+  }
+
+  .css-jmalg {
+    padding-bottom: 0px;
+  }
+
+  .css-176lya2 {
+    position: relative;
+    height: 48px;
+  }
+
+  .css-1w0ksfz {
+    width: 120px;
+    margin-left: 8px;
+  }
+
+  .css-1w0ksfz>button {
+    height: 44px;
+    border-radius: 3px;
+  }
+
+  .css-ufulao {
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+    height: 52px;
+    border-radius: 3px;
+    color: rgb(95, 0, 128);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(95, 0, 128);
+  }
+
+  .css-1w0ksfz>button>span {
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .css-1pjgd36 {
+    display: inline-flex;
+    width: 100%;
+    padding: 10px 20px;
+  }
+
+  .css-1y8737n {
+    width: 139px;
+    padding-top: 12px;
+  }
+
+  .css-label {
+    font-weight: 500;
+    color: rgb(51, 51, 51);
+    line-height: 20px;
+  }
+
+  .css-span {
+    color: rgb(238, 106, 123);
+  }
+
+  .css-82a6rk {
+    flex: 1 1 0%;
+  }
+
+  .css-jmalg {
+    padding-bottom: 0px;
+  }
+
+  .css-176lya2 {
+    position: relative;
+    height: 48px;
+  }
+
+  .css-inputbox {
+    width: 100%;
+    height: 46px;
+    padding: 0 11px 1px 15px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .css-1w0ksfz {
+    width: 120px;
+    margin-left: 8px;
+  }
+
+  .css-137ca2h {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-top: 1px solid rgb(247, 247, 247);
+    padding: 40px 0px;
+  }
+
+  .css-button {
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 240px;
+    height: 56px;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: #CEB39F;
+    border: 0px none;
+  }
+
+  .css-ymwvow {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+  }
+</style>
+<div class="css-pculus e1ovi4141">
+  <div class="label-div e1ovi4140">회원가입</div>
   <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    {% bootstrap_form form %}
-    {% bootstrap_button button_type="submit" content="회원가입" %}
+    <div class="css-mhmtvt e15so55l1">
+      <div class="must-div e1yyjjij1">
+        <span class="css-span e1yyjjij0">*</span> 필수입력사항
+      </div>
+      <div class="css-y8aj3r eo6ykj40">
+        <div class="css-1pjgd36 e744wfw6">
+          <div class="css-1y8737n e744wfw5">
+            <label class="css-label e744wfw4">아이디
+              <span class="css-span e744wfw0">*</span>
+            </label>
+          </div>
+          <div class="css-82a6rk e744wfw3">
+            <div class="css-jmalg e1uzxhvi6">
+              <div class="css-176lya2 e1uzxhvi3"><input data-testid="input-box" name="username"
+                  placeholder="아이디를 입력해주세요" type="text" required="" class="css-inputbox e1uzxhvi2" value="">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="css-1pjgd36 e744wfw6">
+          <div class="css-1y8737n e744wfw5">
+            <label class="css-label e744wfw4">비밀번호
+              <span class="css-span e744wfw0">*</span>
+            </label>
+          </div>
+          <div class="css-82a6rk e744wfw3">
+            <div class="css-jmalg e1uzxhvi6">
+              <div class="css-176lya2 e1uzxhvi3">
+                <input data-testid="input-box" name="password1" placeholder="비밀번호를 입력해주세요" type="password"
+                  autocomplete="off" class="css-inputbox e1uzxhvi2" value="">
+              </div>
+            </div>
+          </div>
+          <div class="css-1w0ksfz e744wfw2"></div>
+        </div>
+        <div class="css-1pjgd36 e744wfw6">
+          <div class="css-1y8737n e744wfw5">
+            <label class="css-label e744wfw4">비밀번호확인
+              <span class="css-span e744wfw0">*</span>
+            </label>
+          </div>
+          <div class="css-82a6rk e744wfw3">
+            <div class="css-jmalg e1uzxhvi6">
+              <div class="css-176lya2 e1uzxhvi3"><input data-testid="input-box" name="password2"
+                  placeholder="비밀번호를 한번 더 입력해주세요" type="password" autocomplete="off" class="css-inputbox e1uzxhvi2"
+                  value=""></div>
+            </div>
+          </div>
+          <div class="css-1w0ksfz e744wfw2"></div>
+        </div>
+        <div class="css-1pjgd36 e744wfw6">
+          <div class="css-1y8737n e744wfw5"><label class="css-label e744wfw4">이름<span
+                class="css-span e744wfw0">*</span></label></div>
+          <div class="css-82a6rk e744wfw3">
+            <div class="css-jmalg e1uzxhvi6">
+              <div class="css-176lya2 e1uzxhvi3">
+                <input data-testid="input-box" name="name" placeholder="이름을 입력해 주세요" type="text" required=""
+                  class="css-inputbox e1uzxhvi2" value="">
+              </div>
+            </div>
+          </div>
+          <div class="css-1w0ksfz e744wfw2"></div>
+        </div>
+        <div class="css-1pjgd36 e744wfw6">
+          <div class="css-1y8737n e744wfw5"><label class="css-label e744wfw4">이메일<span
+                class="css-span e744wfw0">*</span></label></div>
+          <div class="css-82a6rk e744wfw3">
+            <div class="css-jmalg e1uzxhvi6">
+              <div class="css-176lya2 e1uzxhvi3"><input data-testid="input-box" name="email"
+                  placeholder="예: cafemaster@cafe.com" type="text" required="" class="css-inputbox e1uzxhvi2" value="">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="css-1pjgd36 e744wfw6">
+          <div class="css-1y8737n e744wfw5"><label class="css-label e744wfw4">사는 지역<span
+                class="css-span e744wfw0">*</span></label></div>
+          <div class="css-82a6rk e744wfw3">
+            <div class="css-jmalg e1uzxhvi6">
+              <div class="css-176lya2 e1uzxhvi3">
+                <input data-testid="input-box" name="area" placeholder="예: 서울" type="text" autocomplete="off"
+                  class="css-inputbox e1uzxhvi2" value="">
+              </div>
+            </div>
+          </div>
+          <div class="css-1w0ksfz e744wfw2"></div>
+        </div>
+        <div class="css-1pjgd36 e744wfw6">
+          <div class="css-1y8737n e744wfw5">
+            <label class="css-label e744wfw4">프로필 이미지
+              <span class="css-span e744wfw0">*</span>
+            </label>
+          </div>
+          <div class="css-82a6rk e744wfw3">
+            <div class="css-jmalg e1uzxhvi6">
+              <div class="css-176lya2 e1uzxhvi3"><input type="file" name="profile_image"></div>
+            </div>
+          </div>
+          <div class="css-1w0ksfz e744wfw2"></div>
+        </div>
+      </div>
+      <div class="css-137ca2h e1utgeno0"><button class="css-button e4nu7ef3" type="submit" width="240" height="56"
+          radius="3"><span class="css-ymwvow e4nu7ef1">가입하기</span></button></div>
+    </div>
   </form>
 </div>
+
 {% endblock body %}

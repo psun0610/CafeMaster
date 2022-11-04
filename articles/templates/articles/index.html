@@ -64,7 +64,7 @@
   <div class="index-tag-img-div swiper-container">
     <div class="swiper-wrapper">
       {% for swiper in swiper_list %}
-        <a href="{% url 'articles:detail' swiper.pk %}" class="swiper-slide"><img src="{{ swiper.picture1.url }}"></a>
+        <a href="{% url 'articles:detail' swiper.pk %}" class="swiper-slide"><img src="{{ swiper.picture1 }}"></a>
       {% endfor %}
     </div>
     <!-- 페이징 -->
@@ -89,7 +89,7 @@
       {% for recommendcafe in recommend_list %}
         <div>
           <a href="{% url 'articles:detail' recommendcafe.pk %}">
-            <img src="{{ recommendcafe.picture1.url }}">
+            <img src="{{ recommendcafe.picture1 }}">
           </a>
           <div class="index-content-cafe-info title-font">
             <a href="{% url 'articles:detail' recommendcafe.pk %}">
@@ -120,7 +120,7 @@
     <div class="index-content">
       {% for closecafe in closecafe_list %}
         <a href="{% url 'articles:detail' closecafe.pk %}">
-          <img src="{{ closecafe.picture1.url }}">
+          <img src="{{ closecafe.picture1 }}">
         </a>
       {% endfor %}
     </div>
@@ -134,7 +134,7 @@
     <div class="index-content">
       {% for commentcafe in commentcafe_list %}
         <a href="{% url 'articles:detail' commentcafe.pk %}">
-          <img src="{{ commentcafe.picture1.url }}">
+          <img src="{{ commentcafe.picture1 }}">
         </a>
       {% endfor %}
     </div>

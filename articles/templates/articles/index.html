@@ -4,17 +4,19 @@
 
 {% block body %} 
 <!-- 로고 -->
-<div class="index-logo logo-font d-flex justify-content-center align-items-center">
-  <lord-icon
-    src="https://cdn.lordicon.com/kbchswih.json"
-    trigger="hover"
-    colors="outline:#121331,primary:#9e816c,secondary:#ebe6ef"
-    axis-y="45"
-    axis-x="55"
-    style="width:120px;height:120px">
-  </lord-icon>
-  
-  <p class="m-0 d-inline-block">Cafe Master</p>
+<div class="index-logo logo-font">
+  <a href="{% url 'articles:index' %}" class="d-flex justify-content-center align-items-center">
+    <lord-icon
+      src="https://cdn.lordicon.com/kbchswih.json"
+      trigger="hover"
+      colors="outline:#121331,primary:#9e816c,secondary:#ebe6ef"
+      axis-y="45"
+      axis-x="55"
+      style="width:120px;height:120px">
+    </lord-icon>
+    
+    <p class="m-0 d-inline-block">Cafe Master</p>
+  </a>
 </div>
 
 <!-- 검색 기능 -->
@@ -112,6 +114,8 @@
     </div>
   </article>
 
+  <!-- 로그인 하지 않으면 띄우지 않음 -->
+  {% if request.user.is_authenticated %}
   <article>
     <div class="index-title">
       <h2>나와 가까운</h2>
@@ -125,6 +129,7 @@
       {% endfor %}
     </div>
   </article>
+  {% endif %}
 
   <article>
     <div class="index-title">

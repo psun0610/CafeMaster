@@ -72,9 +72,6 @@ def index(request):
                 closecafe.append(cafe)
                 if len(closecafe)==4:
                     break
-
-
-        
     
     # 후기가 많은 카페
     commentcafe = Cafe.objects.order_by('-pk')[:4]
@@ -167,7 +164,7 @@ def create_comment(request, pk):
                 cafe.score = cafe.score + 1
             cafe.save()
             comment.save()
-            return redirect("articles:index")
+            return redirect("articles:detail", pk)
     else:
         commentForm = CommentForm()
     context = {"commentform": commentForm}

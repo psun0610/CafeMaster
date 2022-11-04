@@ -96,18 +96,7 @@ def naverMapCrawling(search):
         except:
             opening = '-'
 
-        driver.find_element(By.CSS_SELECTOR, '.MxgIj').click()
-        open_list = driver.find_elements(By.CSS_SELECTOR, '.nNPOq')[1:]
-        opening = ''
-
-        for opens in open_list:
-            try:
-                day = opens.find_element(By.CSS_SELECTOR, '.X007O > .ob_be > .kGc0c').text
-                times = opens.find_element(By.CSS_SELECTOR, '.X007O > .ob_be > .qo7A2').text
-                opening = day + ' ' + times + '\n'
-            except:
-                break
-
+        print(opening)
 
         for character in string.punctuation:
             name = name.replace(character, '') # 특수기호 제거(파이어베이스에 경로로 저장하기 위해서)

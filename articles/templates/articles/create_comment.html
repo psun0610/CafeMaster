@@ -4,14 +4,59 @@
 {% block body %}
 
 <div class="container" style="padding: 40px 30px;">
-    <h1 class="title-font"> Review </h1>
-
-    <form action="" method="POST" enctype="multipart/form-data ">
+    <h1 class="title-font text-center"> Review </h1>
+    <!-- <form action="" method="POST" enctype="multipart/form-data ">
         {% csrf_token %}
         {% bootstrap_form commentform %}
         <button type="submit" class="btn btn-success" style="float:right; background-color: #CEB39F; border-color: #CEB39F;">등록</button>
-
-        </button>
+    </form> -->
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div>
+            <div>
+                <input style="justify-content: center;" class="comment_form" type="text" name="content" id="content" required>
+            
+                <input type="file" name="picture" id="picture">
+            </div>
+        </div>
+        
     </form>
+ 
+    <form class="index-tags-div kor-font fw-bold">
+        <input type="checkbox" id="tag1" name="tagform" class="tag-input">
+        <label class="tags" for="tag1">
+          #감성충만한
+        </label>
+        <input type="checkbox" id="tag2" name="tagform" class="tag-input">
+        <label class="tags" for="tag2">
+          #디저트가맛있는
+        </label>
+        <input type="checkbox" id="tag3" name="tagform" class="tag-input">
+        <label class="tags" for="tag3">
+          #커피가맛있는
+        </label>
+        <input type="checkbox" id="tag4" name="tagform" class="tag-input">
+        <label class="tags" for="tag4">
+          #힙한
+        </label>
+        <input type="checkbox" id="tag5" name="tagform" class="tag-input">
+        <label class="tags" for="tag5">
+          #데이트하기좋은
+        </label>
+        <input type="checkbox" id="tag6" name="tagform" class="tag-input">
+        <label class="tags" for="tag6">
+          #집중하기좋은
+        </label>
+        <input type="checkbox" id="tag7" name="tagform" class="tag-input">
+        <label class="tags" for="tag7">
+          #인테리어가예쁜
+        </label>
+        <input type="checkbox" id="tag8" name="tagform" class="tag-input">
+        <label class="tags" for="tag8">
+          #뷰가좋은
+        </label>     
+    </form>
+    <!-- <input type="submit" value="글쓰기"> -->
+    <button type="submit" class="btn btn-success" style="float:right; background-color: #CEB39F; border-color: #CEB39F;">등록</button>
 </div>
 {% endblock %}

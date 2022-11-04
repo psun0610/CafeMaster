@@ -44,7 +44,6 @@
     <!-- 찜이 되면 -->
     {% if request.user in cafe.bookmark.all %}
     <i id="like-btn" data-cafe-id="{{ cafe.pk }}" class="bi bi-heart-fill"></i>
-      <a href="" id="like-btn" data-article-id="{{ cafe.pk }}">
       <a href="" class="text-decoration-none">
         <lord-icon
           src="https://cdn.lordicon.com/hqrgkqvs.json"
@@ -56,7 +55,6 @@
       <!-- 찜이 안돼있으면 -->
       {% else %}
       <i id="like-btn" data-cafe-id="{{ cafe.pk }}" class="bi bi-heart"></i>
-      <a href="" id="like-btn" data-article-id="{{ cafe.pk }}">
 
       <!-- 찜이 되면 -->
       <a href="" class="text-decoration-none">

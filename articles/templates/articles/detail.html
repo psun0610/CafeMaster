@@ -50,16 +50,15 @@
       </div>
     </div>
     <div class="d-flex align-items-center">
-      <!-- 찜이 되면 -->
-      {% if request.user in cafe.bookmark.all %}
+      <!-- 찜이 돼있으면 -->
+      {% if request.user in cafe.bookmarks.all %}
       <!-- <i id="like-btn" data-cafe-id="{{ cafe.pk }}" class="bi bi-heart-fill"></i> -->
       <lord-icon
         src="https://cdn.lordicon.com/mdgrhyca.json"
         colors="primary:#e8b730,secondary:#08a88a"
         style="width:70px;height:70px"
         id="bookmark-btn"
-        data-cafe-id="{{ cafe.pk }}"
-        >
+        data-cafe-id="{{ cafe.pk }}">
       </lord-icon>
         <!-- 찜이 안돼있으면 -->
         {% else %}
@@ -70,8 +69,7 @@
           colors="primary:#f4dc9c,secondary:#08a88a"
           style="width:70px;height:70px"
           id="bookmark-btn"
-          data-cafe-id="{{ cafe.pk }}"
-          >
+          data-cafe-id="{{ cafe.pk }}">
         </lord-icon>
         {% endif %}
 
@@ -223,11 +221,11 @@
     })
     .then(response => {
       if (response.data.marked === true) {
-        // marked 되어있으면
+        // marked 되면
         event.target.removeAttribute('trigger')
         event.target.setAttribute('colors', 'primary:#e8b730,secondary:#08a88a')
         } else {
-        // marked 안되어있으면
+        // marked 안되면
         event.target.setAttribute('trigger', 'morph')
         event.target.setAttribute('colors', 'primary:#f4dc9c,secondary:#08a88a')
         }

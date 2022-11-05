@@ -74,7 +74,7 @@ def index(request):
                     break
     
     # 후기가 많은 카페
-    commentcafe = Cafe.objects.order_by('-pk')[:4]
+    commentcafe = Cafe.objects.order_by('-comment.count')
 
     context = {
         'swiper_list': swiper_list,

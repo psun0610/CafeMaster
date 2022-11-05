@@ -232,15 +232,16 @@ def viewmore(request, pk):
             for i in range(8):
                 cafes = Cafe.objects.order_by('-' + reco[i][0])[:20]
                 list_ = []
+                count_ = 0
                 for cafe in  cafes:
                     if cafe in recommend_list:
                         continue
                     else:
                         list_.append(cafe)
-                        if len(list_) == 2:
+                        count_ += 1
+                        if count_ == 2:
                             for ca in list_:
                                 recommend_list.append(ca)
-                            print(recommend_list)
                             break
                         
             context = {

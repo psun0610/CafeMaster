@@ -149,14 +149,10 @@ def add_data():
             ).save()
     return result
 
-keyword_list = ['서울 홍대 카페','인천 카페','대전 카페','대구 카페', '울산 카페','광주 카페','부산 카페', '수원 권선 카페', '강원도 카페', '경상도 카페', '전라도 카페','제주도 카페', '천안 카페']
+# keyword_list = ['서울 홍대 카페','인천 카페','대전 카페','대구 카페', '울산 카페','광주 카페','부산 카페', '수원 권선 카페', '강원도 카페', '경상도 카페', '전라도 카페','제주도 카페', '천안 카페']
 # DB 저장 함수 강제 실행(임시로 실행)
-# search = input("검색어를 입력해주세요 >> ")
-for keyword in keyword_list:
-    search = keyword
-<<<<<<< HEAD
-    naverMapCrawling(search)
-=======
-    naverMapCrawling(search)
+search = input("검색어를 입력해주세요 >> ")
+# for keyword in keyword_list:
+# search = keyword
+naverMapCrawling(search)
 add_data()
->>>>>>> 0daf347e8c9cd59c53650283ce976957223f6b32

@@ -283,6 +283,21 @@
     color:#f8f6f3;
     text-decoration: none;
   }
+  .detail-cafe-nums {
+    display: flex;
+  }
+  .detail-cafe-nums>div {
+    margin-right: 11px;
+  }
+  .detail-cafe-nums svg {
+    width: 16px;
+    height: 16px;
+    color:#767676;
+  }
+  .detail-cafe-nums p {
+    margin-bottom: 0;
+    padding-left: 2px;
+  }
   /* .detail-btn>div {
     display: inline-block;
     padding: 6px 15px 4px;
@@ -337,7 +352,7 @@
     font-size: 17px;
   }
   .detail-user-comment {
-    width: 900px;
+    width: 800px;
     margin-left: 30px;
   }
   .detail-user-comment p {

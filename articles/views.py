@@ -26,16 +26,16 @@ def index(request):
         
 
     # 사용자 추천 카페 정보
-    if request.user.is_authenticated: 
+    if request.user.is_authenticated:
         recommend = []
         adr = request.user.area
-        cafeaddress = Cafe.objects.filter(address=adr)
-        cafeadr = cafeaddress.order_by('-score')[:4]
-        for cafe in cafeadr:
-            for comment in cafe.comment_set.all():
-                if comment.picture != '':
-                    recommend.append((comment.picture, cafe))
+        cafes = Cafe.objects.all()
+        for cafe in cafes:
+            if adr in cafe.address:
+                recommend.append(cafe)
+                if len(recommend) == 4:
                     break
+        print(recommend)
 
         user_tag = [('taste', request.user.taste),
                     ('interior', request.user.interior),
@@ -47,7 +47,7 @@ def index(request):
                     ('sight',  request.user.sight),
                     ]
         reco = sorted(user_tag, reverse=True, key=lambda x:x[1])
-        for i in range(len(user_tag)):
+        for i in range(4):
             for cafe in  Cafe.objects.order_by('-' + reco[i][0])[:1]:
                 recommend.append(cafe)
     else:
@@ -83,6 +83,42 @@ def index(request):
         'commentcafe_list' : commentcafe,
     }
     return render(request, "articles/index.html", context)
+
+# 카페 상세정보
+def detail(request, pk):
+    cafe = Cafe.objects.get(pk=pk)
+    goods = (
+        (cafe.taste,'#커피가맛있는'),
+        (cafe.interior,'#인테리어가예쁜'),
+        (cafe.dessert,'#디저트가맛있는'),
+        (cafe.emotion,'#감성충만한'),
+        (cafe.hip,'#힙한'),
+        (cafe.study,'#집중하기좋은'),
+        (cafe.love,'#데이트하기좋은'),
+        (cafe.sight,'#뷰가좋은'),
+    )
+    comment_form = CommentForm()
+    cafe.score = cafe.taste + cafe.interior + cafe.dessert
+    cafe.save()
+    tag = []
+    for good,name in goods:
+        li = []
+        li.append(good)
+        li.append(name)
+        tag.append(li)
+    tag = sorted(tag, reverse=True, key=lambda x:x[0])
+    hashtag = []
+    for i in range(3):
+        hashtag.append(tag[i][1])
+
+    cafe.hits = cafe.hits + 1
+    cafe.save()
+    context = {
+        'cafe': cafe,
+        'comment' : cafe.comment_set.all(),
+        'hashtag' : hashtag,
+        }
+    return render(request, "articles/detail.html", context)
 
 # 카페 상세정보
 def detail(request, pk):

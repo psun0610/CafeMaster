@@ -218,7 +218,6 @@ def viewmore(request, pk):
                         recommend_list.append(cafe)
                         if len(recommend_list)==4:
                             break
-            print(recommend_list)
         
             user_tag = [['taste', request.user.taste],
                     ['interior', request.user.interior],
@@ -231,14 +230,23 @@ def viewmore(request, pk):
                     ]
             reco = sorted(user_tag, reverse=True, key=lambda x:x[1])
             for i in range(8):
-                cafes = Cafe.objects.order_by('-' + reco[i][0])[:2]
+                cafes = Cafe.objects.order_by('-' + reco[i][0])[:20]
+                list_ = []
                 for cafe in  cafes:
-                    recommend_list.append(cafe)
+                    if cafe in recommend_list:
+                        continue
+                    else:
+                        list_.append(cafe)
+                        if len(list_) == 2:
+                            for ca in list_:
+                                recommend_list.append(ca)
+                            print(recommend_list)
+                            break
                         
-                context = {
+            context = {
                 'recommend' : recommend_list,
                 }
-                return render(request, "articles/viewmore(re).html", context) 
+            return render(request, "articles/viewmore(re).html", context) 
 
         # 가까운 카페
         elif pk == 2:

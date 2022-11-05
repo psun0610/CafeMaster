@@ -1,12 +1,183 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% block body %}
-<div class="login-form-div noto-sans">
-  <h2 class="eng-font">Login</h2>
-  <form action="" method="POST">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    {% bootstrap_button button_type="submit" content="로그인" %}
-  </form>
+<style>
+  div {
+    display: block;
+  }
+
+  .css-pculus {
+    min-width: 1050px;
+    margin-top: 50px;
+    margin-bottom: 60px;
+    background-color: rgb(255, 255, 255);
+  }
+
+  .css-a7gihu {
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .css-10zt1af {
+    width: 340px;
+    margin: 0 auto;
+    letter-spacing: -.6px;
+  }
+
+  .css-46b038 {
+    margin-top: 30px;
+  }
+
+  .css-11sghyr input {
+    height: 54px;
+    font-size: 14px;
+  }
+
+  .css-11sghyr:first-of-type {
+    margin-bottom: 5px;
+  }
+
+  .css-1accgqb {
+    padding-bottom: 12px;
+  }
+
+  .css-1accgqb input {
+    height: 54px;
+    font-size: 14px;
+  }
+
+  .css-1accgqb:first-of-type {
+    margin-bottom: 5px;
+  }
+
+  .css-176lya2 {
+    position: relative;
+    height: 48px;
+  }
+
+  .css-1bkd15f {
+    width: 100%;
+    height: 46px;
+    padding: 0 11px 1px 15px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .css-1bkd15f:placeholder {
+    color: #ccc;
+  }
+
+  .css-1bkd15f:focus {
+    border: 1px solid #333;
+    background: none;
+  }
+
+  .css-1bkd15f:disabled {
+    background-color: #fafafa;
+    color: #999;
+  }
+
+  .css-1bkd15f:disabled:placeholder {
+    color: #999;
+  }
+
+  .css-1vjdduq {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+    margin-top: 10px;
+    font-size: 13px;
+  }
+
+  .css-s4i9n2 {
+    margin-top: 28px;
+  }
+
+  .css-s4i9n2 button:last-of-type {
+    margin-top: 10px;
+  }
+
+  .css-qaxuc4 {
+    display: block;
+    padding: 0 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+    height: 54px;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #CEB39F;
+    border: 0 none;
+  }
+
+  .css-qaxuc4:disabled {
+    background-color: #ddd;
+  }
+
+  .css-ymwvow {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .css-hxorrg {
+    display: block;
+    padding: 0 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+    height: 54px;
+    border-radius: 3px;
+    color: #CEB39F;
+    background-color: #fff;
+    border: 1px solid #CEB39F;
+  }
+
+  .css-hxorrg:disabled {
+    border-color: #ddd;
+    color: #ddd;
+  }
+</style>
+<div class="css-pculus e1ovi4141">
+  <div class="css-a7gihu etkckst1">로그인</div>
+
+  <div class="css-10zt1af etkckst0">
+    <form action="" method="POST">
+      {% csrf_token %}
+      <div class="css-46b038 e18ap6t76">
+        <div class="css-1accgqb e1uzxhvi6">
+          <div class="css-176lya2 e1uzxhvi3">
+            <input type="text" data-testid="input-box" name="username" value="" placeholder="아이디를 입력해주세요"
+              class="css-1bkd15f e1uzxhvi2" />
+          </div>
+        </div>
+        <div class="css-1accgqb e1uzxhvi6">
+          <div class="css-176lya2 e1uzxhvi3"><input type="password" data-testid="input-box" name="password1" value=""
+              placeholder="비밀번호를 입력해주세요" autoComplete="off" class="css-1bkd15f e1uzxhvi2" />
+          </div>
+        </div>
+      </div>
+      <div class="css-s4i9n2 e18ap6t71">
+        <button class="css-qaxuc4 e4nu7ef3" type="submit" height="54" radius="3">
+          <span class="css-ymwvow e4nu7ef1">로그인</span>
+        </button>
+        <button class="css-hxorrg e4nu7ef3" type="button" onclick="location.href='{% url 'accounts:signup' %}' "
+          height="54" radius="3"><span class="css-ymwvow e4nu7ef1">회원가입</span></button>
+      </div>
+    </form>
+  </div>
 </div>
 {% endblock body %}

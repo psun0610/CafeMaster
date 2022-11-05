@@ -26,16 +26,16 @@ def index(request):
         
 
     # 사용자 추천 카페 정보
-    if request.user.is_authenticated: 
+    if request.user.is_authenticated:
         recommend = []
         adr = request.user.area
-        cafeaddress = Cafe.objects.filter(address=adr)
-        cafeadr = cafeaddress.order_by('-score')[:4]
-        for cafe in cafeadr:
-            for comment in cafe.comment_set.all():
-                if comment.picture != '':
-                    recommend.append((comment.picture, cafe))
+        cafes = Cafe.objects.all()
+        for cafe in cafes:
+            if adr in cafe.address:
+                recommend.append(cafe)
+                if len(recommend) == 4:
                     break
+        print(recommend)
 
         user_tag = [('taste', request.user.taste),
                     ('interior', request.user.interior),
@@ -47,7 +47,7 @@ def index(request):
                     ('sight',  request.user.sight),
                     ]
         reco = sorted(user_tag, reverse=True, key=lambda x:x[1])
-        for i in range(len(user_tag)):
+        for i in range(4):
             for cafe in  Cafe.objects.order_by('-' + reco[i][0])[:1]:
                 recommend.append(cafe)
     else:

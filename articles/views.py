@@ -110,6 +110,9 @@ def detail(request, pk):
     hashtag = []
     for i in range(3):
         hashtag.append(tag[i][1])
+
+    cafe.hits = cafe.hits + 1
+    cafe.save()
     context = {
         'cafe': cafe,
         'comment' : cafe.comment_set.all(),

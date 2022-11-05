@@ -106,7 +106,7 @@ def detail(request, pk):
         li.append(good)
         li.append(name)
         tag.append(li)
-    tag = sorted(tag, reverse=True, key=lambda x:x[0])
+    tag = sorted(tag, reverse=True)
     hashtag = []
     for i in range(3):
         hashtag.append(tag[i][1])
@@ -318,9 +318,8 @@ def bookmark(request, pk):
     else:
         cafe.bookmarks.add(request.user)
         marked = True
-    print('11')
     context = {
         'marked': marked,
-        'likeCount2': cafe.bookmarks.count(),
+        'bookmarkCount': cafe.bookmarks.count(),
     }
     return JsonResponse(context)

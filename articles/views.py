@@ -242,14 +242,13 @@ def viewmore(request, pk):
     if request.user.is_authenticated:
         if pk == 1:
         # 사용자 추천 카페 정보
-            if request.user.is_authenticated:
-                adr = request.user.area
-                cafes = Cafe.objects.all()
-                for cafe in cafes:
-                    if adr in cafe.address:
-                        recommend_list.append(cafe)
-                        if len(recommend_list)==4:
-                            break
+                # adr = request.user.area
+                # cafes = Cafe.objects.all()
+                # for cafe in cafes:
+                #     if adr in cafe.address:
+                #         recommend_list.append(cafe)
+                #         if len(recommend_list)==4:
+                #             break
         
             user_tag = [['taste', request.user.taste],
                     ['interior', request.user.interior],
@@ -262,7 +261,7 @@ def viewmore(request, pk):
                     ]
             reco = sorted(user_tag, reverse=True, key=lambda x:x[1])
             for i in range(8):
-                cafes = Cafe.objects.order_by('-' + reco[i][0])[:20]
+                cafes = Cafe.objects.order_by('-' + reco[i][0])[:24]
                 list_ = []
                 count_ = 0
                 for cafe in  cafes:
@@ -271,7 +270,7 @@ def viewmore(request, pk):
                     else:
                         list_.append(cafe)
                         count_ += 1
-                        if count_ == 2:
+                        if count_ == 3:
                             for ca in list_:
                                 recommend_list.append(ca)
                             break

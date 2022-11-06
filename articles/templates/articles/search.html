@@ -16,7 +16,7 @@
   {% endfor %} -->
   <!-- 검색 기능 -->
 <form action="{% url 'articles:search' %}" class="search-form title-font" method="get">
-  <input type="search" class="search-input" placeholder="지역 또는 카페이름" name="searchs">
+  <input type="search" class="search-input" placeholder="지역 또는 카페이름" name="searchs" value="{{ query }}">
   <input type="submit" class="search-btn" value="검색">
 </form>
 

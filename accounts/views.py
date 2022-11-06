@@ -8,6 +8,8 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from .forms import CustomUserCreationForm, CustomUserChangeForm
+from django.contrib import messages
+from django.contrib.auth import authenticate
 
 
 def index(request):
@@ -32,17 +34,26 @@ def signup(request):
 
 
 def login(request):
-    if request.method == "POST":
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            auth_login(request, form.get_user())
-            return redirect(request.GET.get("next") or "articles:index")
-    else:
-        form = AuthenticationForm()
-    context = {
-        "form": form,
-    }
-    return render(request, "accounts/login.html", context)
+    if request.user.is_authenticated:
+        return redirect('articles:index')
+    if request.method == 'POST':
+        username = request.POST['username'].lower()
+        password = request.POST['password1']
+
+        try:
+            user = get_user_model().objects.get(username=username)
+        except:
+            messages.error(request, 'username does not exist!')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            auth_login(request, user)
+            return redirect('articles:index')
+        else:
+            messages.error(request, 'username or password is incorrect!')
+
+    return render(request, 'accounts/login.html')
 
 
 def logout(request):

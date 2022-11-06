@@ -155,26 +155,26 @@
 
   <article>
     <div class="index-title">
-      <h2>후기가 많은</h2>
+      <h2>가장 많이 본</h2>
       <a href="{% url 'articles:viewmore' 3 %}"><h3>더보기</h3></a>
     </div>
     <div class="index-content">
-      {% for commentcafe in commentcafe_list %}
+      {% for mostviewcafe in mostviewcafe_list %}
       <div>
-        <a href="{% url 'articles:detail' commentcafe.pk %}">
-          <img src="{{ commentcafe.picture1 }}">
+        <a href="{% url 'articles:detail' mostviewcafe.pk %}">
+          <img src="{{ mostviewcafe.picture1 }}">
         </a>
         <div class="index-content-cafe-info title-font">
-          <a href="{% url 'articles:detail' commentcafe.pk %}">
+          <a href="{% url 'articles:detail' mostviewcafe.pk %}">
             <h2>
-              {{ commentcafe.name }}<span class="index-message"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16">
+              {{ mostviewcafe.name }}<span class="index-message"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16">
                 <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                 <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-              </svg><span>{{ commentcafe.comment_set.all.count }}</span></span>
+              </svg><span>{{ mostviewcafe.comment_set.all.count }}</span></span>
             </h2>
           </a>
           <div class="index-cafe-address">
-            <h3 class="index-cafe-address-h3-1">{{ commentcafe.address }}</h3>
+            <h3 class="index-cafe-address-h3-1">{{ mostviewcafe.address }}</h3>
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-suit-heart-fill index-heart" viewBox="0 0 16 16">
               <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
             </svg>

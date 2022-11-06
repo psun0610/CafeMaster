@@ -73,14 +73,14 @@ def index(request):
                 if len(closecafe)==4:
                     break
     
-    # 후기가 많은 카페
-    commentcafe = Cafe.objects.order_by('-comment.count')
+    # 가장 많이 본
+    mostviewcafe = Cafe.objects.order_by('-hits')[:4]
 
     context = {
         'swiper_list': swiper_list,
         'recommend_list' : recommend,
         'closecafe_list' : closecafe,
-        'commentcafe_list' : commentcafe,
+        'mostviewcafe_list' : mostviewcafe,
     }
     return render(request, "articles/index.html", context)
 
@@ -143,7 +143,6 @@ def create_comment(request, pk):
             if '1' in comment.tag:
                 cafe.taste = cafe.taste + 1
                 cafe.score = cafe.score + 1
-                print(cafe.taste)
             if '2' in comment.tag:
                 cafe.interior = cafe.interior + 1
                 cafe.score = cafe.score + 1

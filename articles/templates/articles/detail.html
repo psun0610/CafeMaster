@@ -5,7 +5,7 @@
 <!-- 사진 모달 -->
 <div class="detail-img-box">
   <div class="detail-black">
-    <img src="{{ cafe.picture3 }}"/>
+    <img src="{{ cafe.picture3 }}" />
     <div class="detail-black-box"></div>
   </div>
   <div>
@@ -18,7 +18,7 @@
     <img src="{{ cafe.picture3 }}" />
   </div>
   <div class="detail-black">
-    <img src="{{ cafe.picture1 }}"/>
+    <img src="{{ cafe.picture1 }}" />
     <div class="detail-black-box"></div>
   </div>
 </div>
@@ -31,21 +31,26 @@
       <div class="detail-cafe-nums">
         <div class="d-flex align-items-center">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
-            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
-            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+            <path
+              d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
           </svg>
           <p>{{ cafe.hits }}</p>
         </div>
         <div class="d-flex align-items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16" style="color: #DE1A1A;">
-            <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16"
+            style="color: #DE1A1A;">
+            <path
+              d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
           </svg>
           <!-- 퍼센티지로 바꿀 예정 -->
           <p>{{ cafe.score }}</p>
         </div>
         <div class="d-flex align-items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16" style="color: #e8b730;">
-            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"
+            style="color: #e8b730;">
+            <path
+              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
           </svg>
           <p id="bookmark-count">{{ cafe.bookmarks.count }}</p>
         </div>
@@ -55,36 +60,22 @@
       <!-- 찜이 돼있으면 -->
       {% if request.user in cafe.bookmarks.all %}
       <!-- <i id="like-btn" data-cafe-id="{{ cafe.pk }}" class="bi bi-heart-fill"></i> -->
-      <lord-icon
-        src="https://cdn.lordicon.com/mdgrhyca.json"
-        trigger="loop"
-        delay="30000"
-        colors="primary:#e8b730,secondary:#08a88a"
-        style="width:70px;height:70px"
-        id="bookmark-btn"
+      <lord-icon src="https://cdn.lordicon.com/mdgrhyca.json" trigger="loop" delay="30000"
+        colors="primary:#e8b730,secondary:#08a88a" style="width:70px;height:70px" id="bookmark-btn"
         data-cafe-id="{{ cafe.pk }}">
       </lord-icon>
-        <!-- 찜이 안돼있으면 -->
-        {% else %}
-        <!-- <i id="like-btn" data-cafe-id="{{ cafe.pk }}" class="bi bi-heart"></i> -->
-        <lord-icon
-          src="https://cdn.lordicon.com/mdgrhyca.json"
-          trigger="morph"
-          colors="primary:#f4dc9c,secondary:#08a88a"
-          style="width:70px;height:70px"
-          id="bookmark-btn"
-          data-cafe-id="{{ cafe.pk }}">
-        </lord-icon>
-        {% endif %}
+      <!-- 찜이 안돼있으면 -->
+      {% else %}
+      <!-- <i id="like-btn" data-cafe-id="{{ cafe.pk }}" class="bi bi-heart"></i> -->
+      <lord-icon src="https://cdn.lordicon.com/mdgrhyca.json" trigger="morph" colors="primary:#f4dc9c,secondary:#08a88a"
+        style="width:70px;height:70px" id="bookmark-btn" data-cafe-id="{{ cafe.pk }}">
+      </lord-icon>
+      {% endif %}
 
       <!-- 리뷰쓰기 버튼 -->
       <a href="{% url 'articles:create_comment' cafe.pk %}" class="text-decoration-none">
-        <lord-icon
-          src="https://cdn.lordicon.com/qtqvorle.json"
-          trigger="hover"
-          colors="outline:#121331,primary:#9e816c,secondary:#f8f6f3,tertiary:#9e816c"
-          stroke="80"
-          axis-y="55"
+        <lord-icon src="https://cdn.lordicon.com/qtqvorle.json" trigger="hover"
+          colors="outline:#121331,primary:#9e816c,secondary:#f8f6f3,tertiary:#9e816c" stroke="80" axis-y="55"
           style="width:60px;height:60px">
         </lord-icon>
       </a>
@@ -106,7 +97,9 @@
         <td>{{ cafe.telephone }}</td>
       </tr>
       <tr>
-        <td class="th"><p>영업시간</p></td>
+        <td class="th">
+          <p>영업시간</p>
+        </td>
         <td>{{ cafe.opening|linebreaksbr }}</td>
         <!-- <td>{{ cafe.opening }}</td> -->
       </tr>
@@ -120,7 +113,7 @@
   </div>
 
   <hr class="hr">
-  
+
   <!-- 리뷰 -->
   <div class="detail-review-box title-font">
     {% for com in comment %}
@@ -200,24 +193,14 @@
       </div>
       <div>
         {% if request.user in com.like.all %}
-          <lord-icon
-            src="https://cdn.lordicon.com/hqrgkqvs.json"
-            trigger="loop"
-            delay="2000"
-            style="width:50px;height:50px"
-            id="like-btn"
-            data-comment-id="{{ com.pk }}">
-          </lord-icon>
+        <lord-icon src="https://cdn.lordicon.com/hqrgkqvs.json" trigger="loop" delay="2000"
+          style="width:50px;height:50px" id="like-btn" data-comment-id="{{ com.pk }}">
+        </lord-icon>
         {% else %}
-          <lord-icon
-            src="https://cdn.lordicon.com/rjzlnunf.json"
-            trigger="loop-on-hover"
-            delay="2500"
-            colors="primary:#121331,secondary:#9e816c"
-            style="width:50px;height:50px"
-            id="like-btn"
-            data-comment-id="{{ com.pk }}">
-          </lord-icon>
+        <lord-icon src="https://cdn.lordicon.com/rjzlnunf.json" trigger="loop-on-hover" delay="2500"
+          colors="primary:#121331,secondary:#9e816c" style="width:50px;height:50px" id="like-btn"
+          data-comment-id="{{ com.pk }}">
+        </lord-icon>
         {% endif %}
       </div>
     
@@ -237,54 +220,54 @@
     // 서버로 비동기 요청을 하고 싶음
     console.log(event.target.dataset)
     axios({
-        method: 'get',
-        url: `/articles/${event.target.dataset.commentId}/like/`
+      method: 'get',
+      url: `/articles/${event.target.dataset.commentId}/like/`
     })
-    .then(response => {
-      if (response.data.marked === true) {
-        // marked 되어있으면
-        event.target.setAttribute('src', 'https://cdn.lordicon.com/rjzlnunf.json')
-        event.target.setAttribute('trigger', 'loop-on-hover')
-        event.target.setAttribute('delay', '2500')
-        event.target.setAttribute('colors', 'primary:#121331,secondary:#9e816c')
+      .then(response => {
+        if (response.data.marked === true) {
+          // marked 되어있으면
+          event.target.setAttribute('src', 'https://cdn.lordicon.com/rjzlnunf.json')
+          event.target.setAttribute('trigger', 'loop-on-hover')
+          event.target.setAttribute('delay', '2500')
+          event.target.setAttribute('colors', 'primary:#121331,secondary:#9e816c')
         } else {
-        // marked 안되어있으면
-        event.target.setAttribute('src', 'https://cdn.lordicon.com/hqrgkqvs.json')
-        event.target.setAttribute('trigger', 'loop')
-        event.target.setAttribute('delay', '2000')
-        event.target.removeAttribute('colors')
+          // marked 안되어있으면
+          event.target.setAttribute('src', 'https://cdn.lordicon.com/hqrgkqvs.json')
+          event.target.setAttribute('trigger', 'loop')
+          event.target.setAttribute('delay', '2000')
+          event.target.removeAttribute('colors')
         }
-      const likeCount = document.querySelector('#like-count')
-      likeCount.innerText = response.data.likeCount
-    })
+        const likeCount = document.querySelector('#like-count')
+        likeCount.innerText = response.data.likeCount
+      })
   })
 
 
   // (1) 북마크 버튼
-    const bookmarkBtn = document.querySelector('#bookmark-btn')
+  const bookmarkBtn = document.querySelector('#bookmark-btn')
   // (2) 북마크 버튼을 클릭하면, 함수 실행
   bookmarkBtn.addEventListener('click', function (event) {
     // 서버로 비동기 요청을 하고 싶음
     console.log(event.target.dataset)
     axios({
-        method: 'get',
-        url: `/articles/${event.target.dataset.cafeId}/bookmark/`
+      method: 'get',
+      url: `/articles/${event.target.dataset.cafeId}/bookmark/`
     })
-    .then(response => {
-      if (response.data.marked === true) {
-        // marked 되면
-        event.target.setAttribute('trigger', 'loop')
-        event.target.setAttribute('delay', '30000')
-        event.target.setAttribute('colors', 'primary:#e8b730,secondary:#08a88a')
+      .then(response => {
+        if (response.data.marked === true) {
+          // marked 되면
+          event.target.setAttribute('trigger', 'loop')
+          event.target.setAttribute('delay', '30000')
+          event.target.setAttribute('colors', 'primary:#e8b730,secondary:#08a88a')
         } else {
-        // marked 안되면
-        event.target.setAttribute('trigger', 'morph')
-        event.target.setAttribute('colors', 'primary:#f4dc9c,secondary:#08a88a')
-        event.target.deleteAttribute('delay')
+          // marked 안되면
+          event.target.setAttribute('trigger', 'morph')
+          event.target.setAttribute('colors', 'primary:#f4dc9c,secondary:#08a88a')
+          //event.target.deleteAttribute('delay')
         }
-      const bookmarkCount = document.querySelector('#bookmark-count')
-      bookmarkCount.innerText = response.data.bookmarkCount
-    })
+        const bookmarkCount = document.querySelector('#bookmark-count')
+        bookmarkCount.innerText = response.data.bookmarkCount
+      })
   })
 // // =========================
 //   if (response.data.is_like === true) {
@@ -310,6 +293,3 @@
 
 </script>
 {% endblock %}
-
-
-

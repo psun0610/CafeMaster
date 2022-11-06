@@ -49,11 +49,21 @@
     </div>
     <div class="d-flex flex-column justify-content-center">
       <textarea class="comment-form" name="content" id="content" placeholder="리뷰를 입력하세요!" required></textarea>
-      <div class="image-upload">
+      <div class="image-upload d-flex">
         <label for="picture">
             <img src="{% static 'images/camera.png' %}"/>
         </label>
         <input type="file" name="picture" id="picture" style="display: none;">
+        
+        <label for="picture2">
+            <img src="{% static 'images/camera.png' %}"/>
+        </label>
+        <input type="file" name="picture2" id="picture2" style="display: none;">
+
+        <label for="picture3">
+            <img src="{% static 'images/camera.png' %}"/>
+        </label>
+        <input type="file" name="picture3" id="picture3" style="display: none;">
       </div>
     </div>
     <!-- <input type="submit" value="글쓰기"> -->

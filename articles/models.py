@@ -58,6 +58,14 @@ class Comment(models.Model):
                                 processors=[ResizeToFill(1200, 960)],
                                 format='JPEG',
                                 options={'quality': 80})
+    picture2 = ProcessedImageField(upload_to='images/', blank=True,
+                                processors=[ResizeToFill(1200, 960)],
+                                format='JPEG',
+                                options={'quality': 80})
+    picture3 = ProcessedImageField(upload_to='images/', blank=True,
+                                processors=[ResizeToFill(1200, 960)],
+                                format='JPEG',
+                                options={'quality': 80})
     cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE)
     tag = MultiSelectField(choices=good, max_choices=6, blank=True)
     like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='likeuser')

@@ -78,52 +78,65 @@
   </div>
 </div>
 
-
-<div class="d-flex justify-content-center align-items-center account-detail-container title-font">
-  <!-- 프로필 이미지가 있으면 -->
-  {% if user.profile_image %}
-    <img src="{{ user.profile_image.url }}" class="account-detail-img">
-  {% else %}
-    <img src="{% static 'images/user.png' %}" class="account-detail-img">
-  {% endif %}
-  <div class="account-detail-profile">
-    <div class="d-flex align-items-center">
-      {% if user.name %}
-        <h1>{{ user.name }}</h1>
-      {% else %}
-        <h1>Unknown</h1>
-      {% endif %}
-      <!-- 나 자신이 아니라면 팔로우 버튼 생성 -->
-      {% if request.user != user %}
-        <!-- 만약 팔로우 안한 상태라면 팔로우 -->
-        {% if request.user in user.followers.all %}
-          <a href="{% url 'accounts:follow' user.pk %}"><div class="account-detail-follow-btn" style="background-color:#cfcfcf">팔로잉</div></a>
+<div class="account-detail">
+  <div class="d-flex justify-content-center align-items-center account-detail-container title-font">
+    <!-- 프로필 이미지가 있으면 -->
+    {% if user.profile_image %}
+      <img src="{{ user.profile_image.url }}" class="account-detail-img">
+    {% else %}
+      <img src="{% static 'images/user.png' %}" class="account-detail-img">
+    {% endif %}
+    <div class="account-detail-profile">
+      <div class="d-flex align-items-center">
+        {% if user.name %}
+          <h1>{{ user.name }}</h1>
         {% else %}
-          <a href="{% url 'accounts:follow' user.pk %}"><div class="account-detail-follow-btn">팔로우</div></a>
+          <h1>Unknown</h1>
         {% endif %}
-      {% endif %}
+        <!-- 나 자신이 아니라면 팔로우 버튼 생성 -->
+        {% if request.user != user %}
+          <!-- 만약 팔로우 안한 상태라면 팔로우 -->
+          {% if request.user in user.followers.all %}
+            <a href="{% url 'accounts:follow' user.pk %}"><div class="account-detail-follow-btn" style="background-color:#cfcfcf">팔로잉</div></a>
+          {% else %}
+            <a href="{% url 'accounts:follow' user.pk %}"><div class="account-detail-follow-btn">팔로우</div></a>
+          {% endif %}
+        {% endif %}
+        </div>
+      <table>
+        <tbody>
+          <tr>
+            <th>아이디</th>
+            <td>{{ user }}</td>
+          </tr>
+          <tr>
+            <th>이메일</th>
+            <td>{{ user.email }}</td>
+          </tr>
+          <tr>
+            <th>지역</th>
+            <td>{{ user.area }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="d-flex account-detail-follow">
+        <div data-bs-target="#followerModal" data-bs-toggle="modal">팔로워<p>{{ user.followers.count }}</p></div>
+        <div data-bs-target="#followingModal" data-bs-toggle="modal">팔로잉<p>{{ user.followings.count }}</p></div>
       </div>
-    <table>
-      <tbody>
-        <tr>
-          <th>아이디</th>
-          <td>{{ user }}</td>
-        </tr>
-        <tr>
-          <th>이메일</th>
-          <td>{{ user.email }}</td>
-        </tr>
-        <tr>
-          <th>지역</th>
-          <td>{{ user.area }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="d-flex account-detail-follow">
-      <div data-bs-target="#followerModal" data-bs-toggle="modal">팔로워<p>{{ user.followers.count }}</p></div>
-      <div data-bs-target="#followingModal" data-bs-toggle="modal">팔로잉<p>{{ user.followings.count }}</p></div>
     </div>
   </div>
-</div>
+  <!-- 유저가 쓴 리뷰들 -->
+  <div class="account-detail-picture title-font">
+    {% for comment in user.comment_set.all|slice:":4" %}
+      {% if comment.picture %}
+        <a href="{% url 'articles:detail' comment.cafe.pk %}">
+          <img src="{{ comment.picture.url }}">
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div>
 
+  </div>
+</div>
 {% endblock %}

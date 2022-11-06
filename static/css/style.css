@@ -330,7 +330,8 @@
     margin: 50px 0;
   }
   .detail-review-box>div {
-    margin-bottom: 30px;
+    margin: 0 auto 40px;
+    width: 1000px;
   }
   .detail-user-profile {
     display: flex;
@@ -352,16 +353,30 @@
     font-size: 17px;
   }
   .detail-user-comment {
-    width: 800px;
+    /* width: 800px; */
+    height: 100%;
     margin-left: 30px;
   }
   .detail-user-comment p {
     margin-bottom: 5px;
     color:#767676;
   }
+  .detail-user-img-box {
+    margin: 16px 0 0 30px;
+  }
+  .detail-user-img-box > img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
   .detail-empty {
     text-align: center;
     font-size: 17px;
+  }
+  .modal-picture {
+    width: 930px;
+    height: 930px;
+    object-fit: cover;
   }
   /* articles/create_comment */
   .comment-form {
@@ -381,7 +396,7 @@
     margin: 0 auto;
   }
   .image-upload img {
-    margin-top: 30px;
+    margin: 30px 30px 0 0;
     width: 100px;
     height: 100px;
     border-radius: 30px;
@@ -416,6 +431,9 @@
   }
 
   /* accounts/detail.html */
+  .account-detail {
+    padding: 60px 0;
+  }
   .account-detail-container {
     padding: 60px 0;
   }
@@ -472,6 +490,17 @@
     font-weight: normal;
     color:#000000;
     margin: 0 0 0 3px;
+  }
+  .account-detail-picture {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  .account-detail-picture img {
+    width: 270px;
+    height: 270px;
+    margin: 0 10px;
+    object-fit: cover;
   }
   .modal-followers>div {
     width: 400px;

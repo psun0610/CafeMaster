@@ -32,7 +32,7 @@
       <ul class="d-flex">
         {% if request.user.is_authenticated %}
         <li class="my-navitem">
-          <a href="{% url 'accounts:detail' user.pk %}">MyPage</a>
+          <a href="{% url 'accounts:detail' request.user.pk %}">MyPage</a>
         </li>
         <li class="my-navitem">
           <a href="{% url 'accounts:logout' %}">LogOut</a>

@@ -331,7 +331,7 @@ def viewmore(request, pk):
             }
             return render(request, "articles/viewmore(cl).html", context)   
 
-        # 후기가 많은 카페
+        # 가장 많이 본 카페
         elif pk == 3:
             commentcafe = Cafe.objects.order_by('-pk')[:20]
 

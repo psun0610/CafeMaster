@@ -1,11 +1,129 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
+{% load static %}
 {% block body %}
+<!-- 모달 공사중~~~~!!!!!!!!!!!!! -->
+<!-- 팔로워 모달 -->
+<div class="modal fade title-font" id="followerModal" tabindex="-1" aria-labelledby="followerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title w-100 text-center" id="followerModalLabel">Followers</h5>
+      </div>
+      <div class="modal-body">
+        {% if user.followers.all %}
+          {% for follower in user.followers.all %}
+          <a href="{% url 'accounts:detail' follower.pk %}" class="modal-followers" style="color: black; text-decoration: none;">
+            <div class="d-flex align-items-center">
+              <!-- 프로필 이미지가 있으면 -->
+              {% if follower.profile_image %}
+                <img src="{{ follower.profile_image.url }}">
+              {% else %}
+                <img src="{% static 'images/user.png' %}">
+                {% endif %}
+              <!-- 이름이 있으면 이름, 없으면 아이디 -->
+              {% if follower.name %}
+                <h1>{{ follower.name }}</h1>
+              {% else %}
+                <h1>{{ follower }}</h1>
+              {% endif %}
+            </div>
+          </a>
+          {% endfor %}
+        {% else %}
+          <div class="text-center">팔로워가 없습니다.</div>
+        {% endif %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" style="background-color: #CEB39F;" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 팔로잉 모달 -->
+<div class="modal fade title-font" id="followingModal" tabindex="-1" aria-labelledby="followingModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title w-100 text-center" id="followingModalLabel">Followings</h5>
+      </div>
+      <div class="modal-body">
+        {% if user.followings.all %}
+          {% for following in user.followings.all %}
+          <a href="{% url 'accounts:detail' following.pk %}" class="modal-followers" style="color: black; text-decoration: none;">
+            <div class="d-flex align-items-center">
+              <!-- 프로필 이미지가 있으면 -->
+              {% if following.profile_image %}
+                <img src="{{ following.profile_image.url }}">
+              {% else %}
+                <img src="{% static 'images/user.png' %}">
+                {% endif %}
+              <!-- 이름이 있으면 이름, 없으면 아이디 -->
+              {% if following.name %}
+                <h1>{{ following.name }}</h1>
+              {% else %}
+                <h1>{{ following }}</h1>
+              {% endif %}
+            </div>
+          </a>
+          {% endfor %}
+        {% else %}
+        <div class="text-center">팔로우 중인 사람이 없습니다.</div>
+        {% endif %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" style="background-color: #CEB39F;" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-<div>
-    <!-- 프로필 이미지가 있으면 -->
-    <!-- {%  %} -->
-    <!-- <img src="" -->
+
+<div class="d-flex justify-content-center align-items-center account-detail-container title-font">
+  <!-- 프로필 이미지가 있으면 -->
+  {% if user.profile_image %}
+    <img src="{{ user.profile_image.url }}" class="account-detail-img">
+  {% else %}
+    <img src="{% static 'images/user.png' %}" class="account-detail-img">
+  {% endif %}
+  <div class="account-detail-profile">
+    <div class="d-flex align-items-center">
+      {% if user.name %}
+        <h1>{{ user.name }}</h1>
+      {% else %}
+        <h1>Unknown</h1>
+      {% endif %}
+      <!-- 나 자신이 아니라면 팔로우 버튼 생성 -->
+      {% if request.user != user %}
+        <!-- 만약 팔로우 안한 상태라면 팔로우 -->
+        {% if request.user in user.followers.all %}
+          <a href="{% url 'accounts:follow' user.pk %}"><div class="account-detail-follow-btn" style="background-color:#cfcfcf">팔로잉</div></a>
+        {% else %}
+          <a href="{% url 'accounts:follow' user.pk %}"><div class="account-detail-follow-btn">팔로우</div></a>
+        {% endif %}
+      {% endif %}
+      </div>
+    <table>
+      <tbody>
+        <tr>
+          <th>아이디</th>
+          <td>{{ user }}</td>
+        </tr>
+        <tr>
+          <th>이메일</th>
+          <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+          <th>지역</th>
+          <td>{{ user.area }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="d-flex account-detail-follow">
+      <div data-bs-target="#followerModal" data-bs-toggle="modal">팔로워<p>{{ user.followers.count }}</p></div>
+      <div data-bs-target="#followingModal" data-bs-toggle="modal">팔로잉<p>{{ user.followings.count }}</p></div>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

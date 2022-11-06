@@ -59,7 +59,7 @@ class Comment(models.Model):
                                 format='JPEG',
                                 options={'quality': 80})
     cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE)
-    tag = MultiSelectField(choices=good, max_choices=6)
+    tag = MultiSelectField(choices=good, max_choices=6, blank=True)
     like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='likeuser')
 
 

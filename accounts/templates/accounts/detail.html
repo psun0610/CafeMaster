@@ -1,91 +1,11 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% block body %}
-<section class="py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-3">
-                {% if user.profile_image %}
-                <div class="rounded-circle bg-white"
-                    style="width:200px; height:200px; background-image:url({{ user.profile_image.url }}); background-repeat:no-repeat; background-position:center; background-size:contain;);">
-                </div>
-                {% else %}
-                <div class="rounded-circle"
-                    style="width:200px; height:200px; background-image:url('https://dummyimage.com/35x35/000/fff');">
-                </div>
-                {% endif %}
-            </div>
-            <div class="col-md-6">
-                <h3 class="display-6 fw-bolder">{{ user }}</h3><br>
-                <div class="large mb-2">
-                    사는 지역 : {{ user.area }}<br>
-                    이메일 : {{ user.email }}
-                </div>
-                <div class="d-flex">
-                    <div class="me-5">
-                        <p class="fs-6">팔로워<span class="ms-2 fw-bold">{{ user.followers.count }}</span></p>
-                    </div>
-                    <div class="me-5">
-                        <p class="fs-6">팔로우<span class="ms-2 fw-bold">{{ user.followings.count }}</span></p>
-                    </div>
-                </div>
-                {% if request.user != user %}
-                <a href="{% url 'accounts:follow' user.pk %}">
-                    {% if request.user in user.followers.all %}
-                    <button type="button" class="btn btn-danger">팔로우 취소</button>
-                    {% else %}
-                    <button type="button" class="btn btn-primary">팔로우</button>
-                    {% endif %}
-                </a>
-                {% endif %}
-                <br>
-                {% if request.user == user %}
-                <a href="{% url 'accounts:update' %}" type="button" class="btn btn-primary">수정</a>
-                <a href="{% url 'accounts:change_password' %}" class='btn btn-warning'>비밀번호 변경</a>
-                <a href="{% url 'accounts:delete' %}" type="button" class="btn btn-danger">삭제</a>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</section>
-<div class="container my-3">
-    <h3>작성한 댓글</h3>
-    <p class="text-muted">{{ user.comment_set.count }}개를 작성하였습니다.</p>
-    <table class="table">
-        <thead>
-            <tr class="thead-dark">
-                <th>작성 댓글 개수</th>
-                <th>댓글 내용</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for comment in user.comment_set.all %}
-            <tr>
-                <td>{{ forloop.counter}}</td>
-                <td><a href="{% url 'articles:detail' comment.article_id %}">{{comment.content}}</a></td>
-            </tr>
-            {% endfor%}
-        </tbody>
-    </table>
-    <br><br>
-    <h3>좋아요한 카페</h3>
-    <p class="text-muted">{{ user.comment_set.count }}개를 💛하였습니다.</p>
-    <table class="table">
-        <thead>
-            <tr class="thead-dark">
-                <th>번호</th>
-                <th>카페명</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for comment in user.comment_set.all %}
-            <tr>
-                <td>{{ forloop.counter}}</td>
-                <td><a href="{% url 'articles:detail' article.pk %}">{{comment.content}}</a></td>
-            </tr>
-            {% endfor%}
-        </tbody>
-    </table>
 
-    {% endblock %}
+<div>
+    <!-- 프로필 이미지가 있으면 -->
+    <!-- {%  %} -->
+    <!-- <img src="" -->
 </div>
+
+{% endblock %}

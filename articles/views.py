@@ -27,13 +27,13 @@ def index(request):
     recommend = []
     # 사용자 추천 카페 정보
     if request.user.is_authenticated:
-        adr = request.user.area
-        cafes = Cafe.objects.all()
-        for cafe in cafes:
-            if adr in cafe.address:
-                recommend.append(cafe)
-                if len(recommend)==4:
-                    break
+        # adr = request.user.area
+        # cafes = Cafe.objects.all()
+        # for cafe in cafes:
+        #     if adr in cafe.address:
+        #         recommend.append(cafe)
+        #         if len(recommend)==4:
+        #             break
 
         user_tag = [['taste', request.user.taste],
                 ['interior', request.user.interior],
@@ -47,12 +47,18 @@ def index(request):
         reco = sorted(user_tag, reverse=True, key=lambda x:x[1])
         for i in range(4):
             cafes = Cafe.objects.order_by('-' + reco[i][0])[:20]
-            for cafe in cafes:
+            list_ = []
+            count_ = 0
+            for cafe in  cafes:
                 if cafe in recommend:
                     continue
                 else:
-                    recommend.append(cafe)
-                    break
+                    list_.append(cafe)
+                    count_ += 1
+                    if count_ == 2:
+                        for ca in list_:
+                            recommend.append(ca)
+                        break
     else:
         # reco = ['taste',
         #         'interior',

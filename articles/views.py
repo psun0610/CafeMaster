@@ -127,17 +127,16 @@ def create_comment(request, pk):
         commentForm = CommentForm(request.POST, request.FILES)
         print(request.POST, request.FILES)
         if commentForm.is_valid():
-            print(2)
             comment = commentForm.save(commit=False)
             comment.cafe = cafe
             comment.user = request.user
+            comment.picture = request.FILES.get('picture')
+            comment.picture2 = request.FILES.get('picture2')
+            comment.picture3 = request.FILES.get('picture3')
             for i in range(1, 9):
                 if request.POST.get('tag' + str(i)):
                     print(comment.tag)
-                    if comment.tag:
-                        comment.tag += [str(i)]
-                    else:
-                        comment.tag = [str(i)]
+                    comment.tag.append(str(i))
             if '1' in comment.tag:
                 cafe.taste = cafe.taste + 1
                 cafe.score = cafe.score + 1
@@ -164,7 +163,6 @@ def create_comment(request, pk):
                 cafe.score = cafe.score + 1
             cafe.save()
             comment.save()
-            print(3)
             return redirect("articles:detail", pk)
     else:
         commentForm = CommentForm()

@@ -23,23 +23,53 @@ def index(request):
     for num, good in goods:
         for cafe in Cafe.objects.order_by('-' + good)[:9]:
             swiper_list.append(cafe)
-        
 
+    recommend = []
     # 사용자 추천 카페 정보
     if request.user.is_authenticated:
-        recommend = []
         adr = request.user.area
         cafes = Cafe.objects.all()
-        user_tag = [('taste', request.user.taste),
-                    ('interior', request.user.interior),
-                    ('dessert', request.user.dessert),
-                    ('emotion',  request.user.emotion),
-                    ('hip',  request.user.hip),
-                    ('study',  request.user.study),
-                    ('love',  request.user.love),
-                    ('sight',  request.user.sight),
-                    ]
+        for cafe in cafes:
+            if adr in cafe.address:
+                recommend.append(cafe)
+                if len(recommend)==4:
+                    break
+
+        user_tag = [['taste', request.user.taste],
+                ['interior', request.user.interior],
+                ['dessert', request.user.dessert],
+                ['emotion',  request.user.emotion],
+                ['hip',  request.user.hip],
+                ['study',  request.user.study],
+                ['love',  request.user.love],
+                ['sight',  request.user.sight],
+                ]
         reco = sorted(user_tag, reverse=True, key=lambda x:x[1])
+        for i in range(4):
+            cafes = Cafe.objects.order_by('-' + reco[i][0])[:20]
+            for cafe in cafes:
+                if cafe in recommend:
+                    continue
+                else:
+                    recommend.append(cafe)
+                    break
+    else:
+        # reco = ['taste',
+        #         'interior',
+        #         'dessert',
+        #         'emotion',
+        #         'hip',
+        #         'study',
+        #         'love',
+        #         'sight',]
+        # for i in range(8):
+        #     cafes = Cafe.objects.order_by('-' + reco[i])[:20]
+        #     for cafe in cafes:
+        #         if cafe in recommend:
+        #             continue
+        #         else:
+        #             recommend.append(cafe)
+        #             break
         recommend = Cafe.objects.order_by('-score')[:8]
     
     # 가까운 카페

@@ -13,7 +13,6 @@ from dotenv import load_dotenv
 import os
 load_dotenv() # .env 파일에서 환경 변수를 불러옵니다.
 
-from msilib.schema import Media
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

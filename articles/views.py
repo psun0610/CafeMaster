@@ -25,22 +25,58 @@ def index(request):
         for cafe in Cafe.objects.order_by('-' + good)[:9]:
             tmplist.append(cafe)
         swiper_list.append(tmplist)
-
+    recommend = []
     # 사용자 추천 카페 정보
     if request.user.is_authenticated:
-        recommend = []
-        adr = request.user.area
-        cafes = Cafe.objects.all()
-        user_tag = [('taste', request.user.taste),
-                    ('interior', request.user.interior),
-                    ('dessert', request.user.dessert),
-                    ('emotion',  request.user.emotion),
-                    ('hip',  request.user.hip),
-                    ('study',  request.user.study),
-                    ('love',  request.user.love),
-                    ('sight',  request.user.sight),
-                    ]
+        # adr = request.user.area
+        # cafes = Cafe.objects.all()
+        # for cafe in cafes:
+        #     if adr in cafe.address:
+        #         recommend.append(cafe)
+        #         if len(recommend)==4:
+        #             break
+
+        user_tag = [['taste', request.user.taste],
+                ['interior', request.user.interior],
+                ['dessert', request.user.dessert],
+                ['emotion',  request.user.emotion],
+                ['hip',  request.user.hip],
+                ['study',  request.user.study],
+                ['love',  request.user.love],
+                ['sight',  request.user.sight],
+                ]
         reco = sorted(user_tag, reverse=True, key=lambda x:x[1])
+        for i in range(4):
+            cafes = Cafe.objects.order_by('-' + reco[i][0])[:20]
+            list_ = []
+            count_ = 0
+            for cafe in  cafes:
+                if cafe in recommend:
+                    continue
+                else:
+                    list_.append(cafe)
+                    count_ += 1
+                    if count_ == 2:
+                        for ca in list_:
+                            recommend.append(ca)
+                        break
+    else:
+        # reco = ['taste',
+        #         'interior',
+        #         'dessert',
+        #         'emotion',
+        #         'hip',
+        #         'study',
+        #         'love',
+        #         'sight',]
+        # for i in range(8):
+        #     cafes = Cafe.objects.order_by('-' + reco[i])[:20]
+        #     for cafe in cafes:
+        #         if cafe in recommend:
+        #             continue
+        #         else:
+        #             recommend.append(cafe)
+        #             break
         recommend = Cafe.objects.order_by('-score')[:8]
     
     # 가까운 카페
@@ -207,14 +243,13 @@ def viewmore(request, pk):
     if request.user.is_authenticated:
         if pk == 1:
         # 사용자 추천 카페 정보
-            if request.user.is_authenticated:
-                adr = request.user.area
-                cafes = Cafe.objects.all()
-                for cafe in cafes:
-                    if adr in cafe.address:
-                        recommend_list.append(cafe)
-                        if len(recommend_list)==4:
-                            break
+                # adr = request.user.area
+                # cafes = Cafe.objects.all()
+                # for cafe in cafes:
+                #     if adr in cafe.address:
+                #         recommend_list.append(cafe)
+                #         if len(recommend_list)==4:
+                #             break
         
             user_tag = [['taste', request.user.taste],
                     ['interior', request.user.interior],
@@ -227,7 +262,7 @@ def viewmore(request, pk):
                     ]
             reco = sorted(user_tag, reverse=True, key=lambda x:x[1])
             for i in range(8):
-                cafes = Cafe.objects.order_by('-' + reco[i][0])[:20]
+                cafes = Cafe.objects.order_by('-' + reco[i][0])[:24]
                 list_ = []
                 count_ = 0
                 for cafe in  cafes:
@@ -236,7 +271,7 @@ def viewmore(request, pk):
                     else:
                         list_.append(cafe)
                         count_ += 1
-                        if count_ == 2:
+                        if count_ == 3:
                             for ca in list_:
                                 recommend_list.append(ca)
                             break
@@ -297,7 +332,7 @@ def viewmore(request, pk):
             }
             return render(request, "articles/viewmore(cl).html", context)   
 
-        # 후기가 많은 카페
+        # 가장 많이 본 카페
         elif pk == 3:
             commentcafe = Cafe.objects.order_by('-pk')[:20]
 

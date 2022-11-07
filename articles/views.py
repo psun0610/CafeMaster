@@ -160,6 +160,7 @@ def create_cafe(request):
 
 def create_comment(request, pk):
     cafe = Cafe.objects.get(pk=pk)
+    tag_list = ['', 'taste', 'interior', 'dessert', 'emotion', 'hip', 'study', 'love', 'sight',]
     if request.method == "POST":
         commentForm = CommentForm(request.POST, request.FILES)
         print(request.POST, request.FILES)
@@ -174,6 +175,7 @@ def create_comment(request, pk):
                 if request.POST.get('tag' + str(i)):
                     print(comment.tag)
                     comment.tag.append(str(i))
+
             if '1' in comment.tag:
                 cafe.taste = cafe.taste + 1
                 cafe.score = cafe.score + 1
@@ -210,8 +212,34 @@ def create_comment(request, pk):
 
 def comments_delete(request, article_pk, comment_pk):
     comment_user = Comment.objects.get(pk=comment_pk)
+    cafe = Cafe.objects.get(pk=article_pk)
     if request.user == comment_user.user:
         comment = Comment.objects.get(pk=comment_pk)
+        if '1' in comment.tag:
+            cafe.taste = cafe.taste - 1
+            cafe.score = cafe.score - 1
+        if '2' in comment.tag:
+            cafe.interior = cafe.interior - 1
+            cafe.score = cafe.score - 1
+        if '3' in comment.tag:
+            cafe.dessert = cafe.dessert - 1
+            cafe.score = cafe.score - 1
+        if '4' in comment.tag:
+            cafe.emotion = cafe.emotion - 1
+            cafe.score = cafe.score - 1
+        if '5' in comment.tag:
+            cafe.hip = cafe.hip - 1
+            cafe.score = cafe.score - 1
+        if '6' in comment.tag:
+            cafe.study = cafe.study - 1
+            cafe.score = cafe.score - 1
+        if '7' in comment.tag:
+            cafe.love = cafe.love - 1
+            cafe.score = cafe.score - 1
+        if '8' in comment.tag:
+            cafe.sight = cafe.sight - 1
+            cafe.score = cafe.score - 1
+        cafe.save()
         comment.delete()
         return redirect("articles:detail", article_pk)
     else:

@@ -27,15 +27,18 @@ class Cafe(models.Model):
     picture1 = ProcessedImageField(upload_to='images/', blank=True,
                         processors=[ResizeToFill(1200, 960)],
                         format='JPEG',
-                        options={'quality': 100})
+                        options={'quality': 100},
+                        max_length=1000)
     picture2 = ProcessedImageField(upload_to='images/', blank=True,
                         processors=[ResizeToFill(1200, 960)],
                         format='JPEG',
-                        options={'quality': 100})
+                        options={'quality': 100},
+                        max_length=1000)
     picture3 = ProcessedImageField(upload_to='images/', blank=True,
                         processors=[ResizeToFill(1200, 960)],
                         format='JPEG',
-                        options={'quality': 100})
+                        options={'quality': 100},
+                        max_length=1000)
     score = models.IntegerField(default=0)
     hits = models.IntegerField(default=0)
     bookmarks = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='bookmarksuser')

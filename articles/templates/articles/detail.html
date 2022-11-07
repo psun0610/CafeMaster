@@ -198,7 +198,7 @@
         </div>
       </div>
       <div>
-        {% if request.user in com.like.all %}
+        <!-- {% if request.user in com.like.all %}
         <lord-icon src="https://cdn.lordicon.com/hqrgkqvs.json" trigger="loop" delay="2000"
           style="width:50px;height:50px" id="like-btn" data-comment-id="{{ com.pk }}">
         </lord-icon>
@@ -207,6 +207,9 @@
           colors="primary:#121331,secondary:#9e816c" style="width:50px;height:50px" id="like-btn"
           data-comment-id="{{ com.pk }}">
         </lord-icon>
+        {% endif %} -->
+        {% if request.user == com.user %}
+          <a href="{% url 'articles:comments_delete' cafe.pk com.pk %}" class="comments-delete"><div>X</div></a>
         {% endif %}
       </div>
 
@@ -248,34 +251,34 @@
       })
   })
 
-  // (1) 좋아요 버튼
-  const likeBtn = document.querySelector('#like-btn')
-  // (2) 좋아요 버튼을 클릭하면, 함수 실행
-  likeBtn.addEventListener('click', function (event) {
-    // 서버로 비동기 요청을 하고 싶음
-    console.log(event.target.dataset)
-    axios({
-      method: 'get',
-      url: `/articles/${event.target.dataset.commentId}/like/`
-    })
-      .then(response => {
-        if (response.data.marked === true) {
-          // marked 되어있으면
-          event.target.setAttribute('src', 'https://cdn.lordicon.com/rjzlnunf.json')
-          event.target.setAttribute('trigger', 'loop-on-hover')
-          event.target.setAttribute('delay', '2500')
-          event.target.setAttribute('colors', 'primary:#121331,secondary:#9e816c')
-        } else {
-          // marked 안되어있으면
-          event.target.setAttribute('src', 'https://cdn.lordicon.com/hqrgkqvs.json')
-          event.target.setAttribute('trigger', 'loop')
-          event.target.setAttribute('delay', '2000')
-          event.target.removeAttribute('colors')
-        }
-        const likeCount = document.querySelector('#like-count')
-        likeCount.innerText = response.data.likeCount
-      })
-  })
+  // // (1) 좋아요 버튼
+  // const likeBtn = document.querySelector('#like-btn')
+  // // (2) 좋아요 버튼을 클릭하면, 함수 실행
+  // likeBtn.addEventListener('click', function (event) {
+  //   // 서버로 비동기 요청을 하고 싶음
+  //   console.log(event.target.dataset)
+  //   axios({
+  //     method: 'get',
+  //     url: `/articles/${event.target.dataset.commentId}/like/`
+  //   })
+  //     .then(response => {
+  //       if (response.data.marked === true) {
+  //         // marked 되어있으면
+  //         event.target.setAttribute('src', 'https://cdn.lordicon.com/rjzlnunf.json')
+  //         event.target.setAttribute('trigger', 'loop-on-hover')
+  //         event.target.setAttribute('delay', '2500')
+  //         event.target.setAttribute('colors', 'primary:#121331,secondary:#9e816c')
+  //       } else {
+  //         // marked 안되어있으면
+  //         event.target.setAttribute('src', 'https://cdn.lordicon.com/hqrgkqvs.json')
+  //         event.target.setAttribute('trigger', 'loop')
+  //         event.target.setAttribute('delay', '2000')
+  //         event.target.removeAttribute('colors')
+  //       }
+  //       const likeCount = document.querySelector('#like-count')
+  //       likeCount.innerText = response.data.likeCount
+  //     })
+  // })
 
 // // =========================
 //   if (response.data.is_like === true) {

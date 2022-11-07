@@ -528,6 +528,16 @@
     font-size: 18px;
     font-weight: bold;
   }
+  .comments-delete {
+    color:#ffffff;
+    text-decoration: none;
+    font-size: 13px;
+  }
+  .comments-delete>div {
+    padding: 1px 6px;
+    border-radius: 8px;
+    background-color:#CEB39F;
+  }
 }
 
 /* 컨테이너 사이즈 */

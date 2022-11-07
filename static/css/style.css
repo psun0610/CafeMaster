@@ -516,6 +516,18 @@
     font-size: 16px;
     margin: 0 0 0 16px;
   }
+  .modal-bookmarks>div {
+    margin-bottom: 16px;
+  }
+  .modal-bookmarks img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+  }
+  .modal-bookmarks h1 {
+    font-size: 18px;
+    font-weight: bold;
+  }
 }
 
 /* 컨테이너 사이즈 */

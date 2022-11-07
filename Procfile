@@ -1,0 +1,1 @@
+web: gunicorn CafeMaster.wsgi --log-file -

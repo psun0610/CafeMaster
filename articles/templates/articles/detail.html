@@ -124,9 +124,9 @@
           <a href="{% url 'accounts:detail' com.user.pk %}">
             <!-- 프로필 사진이 있으면 -->
             {% if com.user.profile_image %}
-              <img src="{{ com.user.profile_image.url }}">
+            <img src="{{ com.user.profile_image.url }}">
             {% else %}
-              <img src="{% static 'images/user.png' %}">
+            <img src="{% static 'images/user.png' %}">
             {% endif %}
           </a>
           <a href="{% url 'accounts:detail' com.user.pk %}">
@@ -145,14 +145,16 @@
           <div class="detail-user-img-box">
             {% if com.picture %}
             <img src="{{ com.picture.url }}" data-bs-toggle="modal" data-bs-target="#pictureModal">
-            <div class="modal fade title-font" id="pictureModal" tabindex="-1" aria-labelledby="pictureModalLabel" aria-hidden="true">
+            <div class="modal fade title-font" id="pictureModal" tabindex="-1" aria-labelledby="pictureModalLabel"
+              aria-hidden="true">
               <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
                   <div class="modal-body m-auto">
                     <img src="{{ com.picture.url }}" class="modal-picture">
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: #CEB39F;">Close</button>
+                    <button type="button" class="btn" data-bs-dismiss="modal"
+                      style="background-color: #CEB39F;">Close</button>
                   </div>
                 </div>
               </div>
@@ -160,14 +162,16 @@
             {% endif %}
             {% if com.picture2 %}
             <img src="{{ com.picture2.url }}" data-bs-toggle="modal" data-bs-target="#picture2Modal">
-            <div class="modal fade title-font" id="picture2Modal" tabindex="-1" aria-labelledby="picture2ModalLabel" aria-hidden="true">
+            <div class="modal fade title-font" id="picture2Modal" tabindex="-1" aria-labelledby="picture2ModalLabel"
+              aria-hidden="true">
               <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
                   <div class="modal-body m-auto">
                     <img src="{{ com.picture2.url }}" class="modal-picture">
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: #CEB39F;">Close</button>
+                    <button type="button" class="btn" data-bs-dismiss="modal"
+                      style="background-color: #CEB39F;">Close</button>
                   </div>
                 </div>
               </div>
@@ -175,14 +179,16 @@
             {% endif %}
             {% if com.picture3 %}
             <img src="{{ com.picture3.url }}" data-bs-toggle="modal" data-bs-target="#picture3Modal">
-            <div class="modal fade title-font" id="picture3Modal" tabindex="-1" aria-labelledby="picture3ModalLabel" aria-hidden="true">
+            <div class="modal fade title-font" id="picture3Modal" tabindex="-1" aria-labelledby="picture3ModalLabel"
+              aria-hidden="true">
               <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
                   <div class="modal-body m-auto">
                     <img src="{{ com.picture3.url }}" class="modal-picture">
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: #CEB39F;">Close</button>
+                    <button type="button" class="btn" data-bs-dismiss="modal"
+                      style="background-color: #CEB39F;">Close</button>
                   </div>
                 </div>
               </div>
@@ -203,7 +209,7 @@
         </lord-icon>
         {% endif %}
       </div>
-    
+
     </div>
     {% empty %}
     <p class="detail-empty">리뷰가 없어요 ㅠ_ㅠ</p>
@@ -213,7 +219,7 @@
 <script src="https://cdn.lordicon.com/qjzruarw.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-  
+
 
   // (1) 북마크 버튼
   const bookmarkBtn = document.getElementById('bookmark-btn')

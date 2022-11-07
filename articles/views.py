@@ -207,6 +207,15 @@ def create_comment(request, pk):
     }
     return render(request, "articles/create_comment.html", context)
 
+def comments_delete(request, article_pk, comment_pk):
+    comment_user = Comment.objects.get(pk=comment_pk)
+    if request.user == comment_user.user:
+        comment = Comment.objects.get(pk=comment_pk)
+        comment.delete()
+        return redirect("articles:detail", article_pk)
+    else:
+        return redirect("articles:detail", article_pk)
+
 def search(request):
     if 'searchs' in request.GET:
         query = request.GET.get('searchs')

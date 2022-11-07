@@ -1,0 +1,27 @@
+[
+  {
+    "model": "articles.cafe",
+    "pk": 210,
+    "fields": {
+      "name": "문현사 커피 로스터스",
+      "address": "대구 중구 동성로3길 9-5",
+      "map_url": "https://m.place.naver.com/restaurant/1237549211/location",
+      "telephone": "010-3264-0220",
+      "opening": "매일 12:00 - 22:00\n",
+      "picture1": "https://search.pstatic.net/common/?autoRotate=true&type=w560_sharpen&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220318_15%2F1647592203170SStrq_JPEG%2F%25C5%25A9%25B1%25E2%25BA%25AF%25C8%25AFKakaoTalk_20220318_170609910.jpg",
+      "picture2": "https://search.pstatic.net/common/?autoRotate=true&type=w278_sharpen&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220318_279%2F1647592197705U95Lz_JPEG%2F%25C5%25A9%25B1%25E2%25BA%25AF%25C8%25AFKakaoTalk_20220318_170611494.jpg",
+      "picture3": "https://search.pstatic.net/common/?autoRotate=true&type=w278_sharpen&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20191128_213%2F1574936181135tlJSx_JPEG%2FjIPcRqHp3RiVhJMu-P7ABnyo.jpeg.jpg",
+      "score": 0,
+      "hits": 0,
+      "taste": 0,
+      "interior": 0,
+      "dessert": 0,
+      "emotion": 0,
+      "hip": 0,
+      "study": 0,
+      "love": 0,
+      "sight": 0,
+      "bookmarks": []
+    }
+  }
+]

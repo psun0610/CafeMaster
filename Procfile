@@ -1,1 +1,1 @@
-web: gunicorn CafeMaster.wsgi --log-file -
+web: gunicorn CafeMaster.wsgi

@@ -841,7 +841,8 @@
     margin: 3.4060vw 0;
   }
   .detail-review-box>div {
-    margin-bottom: 2.0436vw;
+    margin: 0 auto 2.7248vw;
+    width: 68.1199vw;
   }
   .detail-user-profile {
     display: flex;
@@ -863,16 +864,30 @@
     font-size: 1.1580vw;
   }
   .detail-user-comment {
-    width: 54.4959vw;
+    /* width: 54.4959vw; */
+    height: 100%;
     margin-left: 2.0436vw;
   }
   .detail-user-comment p {
     margin-bottom: 0.3406vw;
     color:#767676;
   }
+  .detail-user-img-box {
+    margin: 1.0899vw 0 0 2.0436vw;
+  }
+  .detail-user-img-box > img {
+    width: 10.2180vw;
+    height: 10.2180vw;
+    object-fit: cover;
+  }
   .detail-empty {
     text-align: center;
     font-size: 1.1580vw;
+  }
+  .modal-picture {
+    width: 63.3515vw;
+    height: 63.3515vw;
+    object-fit: cover;
   }
   /* articles/create_comment */
   .comment-form {
@@ -892,7 +907,7 @@
     margin: 0 auto;
   }
   .image-upload img {
-    margin-top: 2.0436vw;
+    margin: 2.0436vw 2.0436vw 0 0;
     width: 6.8120vw;
     height: 6.8120vw;
     border-radius: 2.0436vw;
@@ -924,6 +939,115 @@
     text-align: center;
     font-size: 1.3624vw;
     padding: 4.0872vw 0;
+  }
+
+  /* accounts/detail.html */
+  .account-detail {
+    padding: 4.0872vw 0;
+  }
+  .account-detail-container {
+    padding: 4.0872vw 0;
+  }
+  .account-detail-img {
+    width: 10.2180vw;
+    height: 10.2180vw;
+    object-fit: cover;
+    border-radius: 50%;
+    transform: scale(1.1);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+  }
+  .account-detail-profile {
+    width: 27.2480vw;
+    padding-left: 3.4060vw;
+  }
+  .account-detail-profile a {
+    color:#000000;
+    text-decoration: none;
+  }
+  .account-detail-profile h1 {
+    font-size: 1.6349vw;
+    margin: 0;
+    font-weight: bold;
+  }
+  .account-detail-follow-btn {
+    margin-left: 1.0899vw;
+    padding: 0.0681vw 0.6812vw;
+    border-radius: 0.8856vw;
+    background-color: #CEB39F;
+    font-size: 1.1580vw;
+  }
+  .account-detail-profile table {
+    margin-top: 0.8856vw;
+  }
+  .account-detail-profile tr {
+    font-size: 1.0899vw;
+  }
+  .account-detail-profile td {
+    padding-left: 1.0899vw;
+  }
+  .account-detail-follow {
+    margin-top: 0.3406vw;
+  }
+  .account-detail-follow>div {
+    display: flex;
+    font-weight: bold;
+    font-size: 1.0899vw;
+    margin-right: 2.0436vw;
+  }
+  .account-detail-follow>div>p {
+    font-weight: normal;
+    color:#000000;
+    margin: 0 0 0 0.2044vw;
+  }
+  .account-detail-picture {
+    display: flex;
+    justify-content: center;
+    padding: 1.3624vw;
+  }
+  .account-detail-picture img {
+    width: 18.3924vw;
+    height: 18.3924vw;
+    margin: 0 0.6812vw;
+    object-fit: cover;
+  }
+  .modal-followers>div {
+    width: 27.2480vw;
+    margin: 0 auto;
+  }
+  .modal-followers img {
+    width: 3.4060vw;
+    height: 3.4060vw;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  .modal-followers h1 {
+    font-size: 1.0899vw;
+    margin: 0 0 0 1.0899vw;
+  }
+  .modal-bookmarks>div {
+    margin-bottom: 1.0899vw;
+  }
+  .modal-bookmarks img {
+    width: 20.4360vw;
+    height: 20.4360vw;
+    object-fit: cover;
+  }
+  .modal-bookmarks h1 {
+    font-size: 1.2262vw;
+    font-weight: bold;
+  }
+  .comments-delete {
+    color:#ffffff;
+    text-decoration: none;
+    font-size: 0.8856vw;
+  }
+  .comments-delete>div {
+    padding: 0.0681vw 0.4087vw;
+    border-radius: 0.5450vw;
+    background-color:#CEB39F;
   }
 }
 

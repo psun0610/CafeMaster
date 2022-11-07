@@ -79,7 +79,7 @@
     </svg>
   </div>
 
-{% for swipers in swiper_list %}
+{% for swipers in swiper_list|slice:"1:" %}
   <div class="index-tag-img-div swiper-container" id="swiper{{forloop.counter}}" style="display: none;">
     <div class="swiper-wrapper">
       {% for swiper in swipers %}

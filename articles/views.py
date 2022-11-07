@@ -21,9 +21,10 @@ def index(request):
     )
     swiper_list = []
     for num, good in goods:
+        tmplist = []
         for cafe in Cafe.objects.order_by('-' + good)[:9]:
-            swiper_list.append(cafe)
-        
+            tmplist.append(cafe)
+        swiper_list.append(tmplist)
 
     # 사용자 추천 카페 정보
     if request.user.is_authenticated:

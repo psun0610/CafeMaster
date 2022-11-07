@@ -26,50 +26,50 @@
 </form>
 
 <!-- 해시태그 -->
-<form class="index-tags-div kor-font fw-bold">
-  <input type="radio" id="tag1" name="tagform" class="tag-input" checked>
-  <label class="tags" for="tag1">
+<form class="index-tags-div kor-font fw-bold" id="radioform">
+  <input type="radio" id="tag0" name="tagform" class="tag-input" checked>
+  <label class="tags" for="tag0">
     #감성충만한
+  </label>
+  <input type="radio" id="tag1" name="tagform" class="tag-input">
+  <label class="tags" for="tag1">
+    #디저트가맛있는
   </label>
   <input type="radio" id="tag2" name="tagform" class="tag-input">
   <label class="tags" for="tag2">
-    #디저트가맛있는
+    #커피가맛있는
   </label>
   <input type="radio" id="tag3" name="tagform" class="tag-input">
   <label class="tags" for="tag3">
-    #커피가맛있는
+    #힙한
   </label>
   <input type="radio" id="tag4" name="tagform" class="tag-input">
   <label class="tags" for="tag4">
-    #힙한
+    #데이트하기좋은
   </label>
   <input type="radio" id="tag5" name="tagform" class="tag-input">
   <label class="tags" for="tag5">
-    #데이트하기좋은
+    #집중하기좋은
   </label>
   <input type="radio" id="tag6" name="tagform" class="tag-input">
   <label class="tags" for="tag6">
-    #집중하기좋은
+    #인테리어가예쁜
   </label>
   <input type="radio" id="tag7" name="tagform" class="tag-input">
   <label class="tags" for="tag7">
-    #인테리어가예쁜
-  </label>
-  <input type="radio" id="tag8" name="tagform" class="tag-input">
-  <label class="tags" for="tag8">
     #뷰가좋은
   </label>
 </form>
 
 <div class="index-container kor-font">
 <!-- 캐러셀 -->
-  <div class="index-tag-img-div swiper-container">
+  <div class="index-tag-img-div swiper-container" id="swiper0">
     <div class="swiper-wrapper">
-      {% for swiper in swiper_list %}
+      {% for swiper in swiper_list.0 %}
         <a href="{% url 'articles:detail' swiper.pk %}" class="swiper-slide"><img src="{{ swiper.picture1 }}"></a>
       {% endfor %}
     </div>
-    <!-- 페이징 -->
+      <!-- 페이징 -->
     <div class="swiper-pagination"></div>
     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="swiper-button-prev bi bi-caret-left-fill index-arrow" viewBox="0 0 16 16">
       <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
@@ -78,6 +78,24 @@
       <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
     </svg>
   </div>
+
+{% for swipers in swiper_list %}
+  <div class="index-tag-img-div swiper-container" id="swiper{{forloop.counter}}" style="display: none;">
+    <div class="swiper-wrapper">
+      {% for swiper in swipers %}
+        <a href="{% url 'articles:detail' swiper.pk %}" class="swiper-slide"><img src="{{ swiper.picture1 }}"></a>
+      {% endfor %}
+    </div>
+      <!-- 페이징 -->
+    <div class="swiper-pagination"></div>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="swiper-button-prev bi bi-caret-left-fill index-arrow" viewBox="0 0 16 16">
+        <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="swiper-button-next bi bi-caret-right-fill index-arrow" viewBox="0 0 16 16">
+        <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+      </svg>
+  </div>
+{% endfor %}
 </div>
 
 
@@ -200,7 +218,8 @@ slidesPerGroup : 3, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 
 loopFillGroupWithBlank : true,
 
 loop : true, // 무한 반복
-
+observer : true,
+observeParents : true,
 pagination : { // 페이징
   el : '.swiper-pagination',
   clickable : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
@@ -210,5 +229,27 @@ navigation : { // 네비게이션
   prevEl : '.swiper-button-prev', // 이번 버튼 클래스명
 },
 });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+
+document.getElementById('radioform').addEventListener("click",  function() {
+  var check_id = Array.from(radioform).find(radio => radio.checked).getAttribute('id').replace('tag', '');
+  console.log(check_id)
+  var radios = document.getElementsByName('tagform');
+  for (var i=0; i<radios.length; i++)
+  {
+    // 체크된 라디오가 현재 인덱스의 id와 같다면
+    // -> show
+    if (check_id === String(i)) {
+      document.querySelector('#swiper'+String(i)).setAttribute('style', 'display: block')
+    }
+    // 다르다면
+    // -> hide
+    else {
+      document.querySelector('#swiper'+String(i)).setAttribute('style', 'display: none')
+    }
+  }
+})
 </script>
 {% endblock %}

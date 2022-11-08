@@ -24,7 +24,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()  # ModelForm의 save메소드의 리턴값은 해당 모델의 인스턴스다
             auth_login(request, user)  # 로그인
-            return redirect("accounts:index")
+            return redirect("articles:index")
     else:
         form = CustomUserCreationForm()
     context = {

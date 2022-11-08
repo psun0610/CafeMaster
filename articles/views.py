@@ -82,7 +82,7 @@ def index(request):
     # 가까운 카페
     if request.user.is_authenticated:
         adr = request.user.area
-        cafes = Cafe.objects.all()
+        cafes = Cafe.objects.order_by('-score')
         closecafe = []
         for cafe in cafes:
             if adr in cafe.address:

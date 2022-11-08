@@ -338,10 +338,10 @@ def viewmore(request, pk):
             return render(request, "articles/viewmore(cl).html", context)  
 
         elif pk == 3:
-            commentcafe = Cafe.objects.order_by('-pk')[:20]
+            mostviewcafe = Cafe.objects.order_by('-hits')[:4]
 
             context = {
-                'commentcafe' : commentcafe,
+                'commentcafe' : mostviewcafe,
             }
             return render(request, "articles/viewmore(co).html", context)
 
